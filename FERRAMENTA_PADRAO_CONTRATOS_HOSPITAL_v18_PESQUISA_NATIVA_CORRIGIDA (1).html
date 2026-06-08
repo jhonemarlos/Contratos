@@ -1,0 +1,2989 @@
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Proposta técnico-comercial de pacotes hospitalares da Hospital Santa Helena para a Marinha do Brasil / DGN." name="description"/><meta content="Hospital Santa Helena" name="author"/><title>Ferramenta Padrão de Contratos - Hospital Santa Helena v18 Pesquisa Corrigida</title><style>
+:root{
+  --navy:#16324f;
+  --blue:#2f6fa8;
+  --light-blue:#eef5fb;
+  --gold:#b88922;
+  --ink:#14212e;
+  --muted:#5e6f80;
+  --line:#23384d;
+  --line-soft:#bfcbd8;
+  --value:#e6eef7;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#e5ebf1;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+}
+.toolbar{
+  position:sticky;
+  top:0;
+  z-index:30;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:10px 16px;
+  background:#16324f;
+  color:white;
+  box-shadow:0 2px 10px rgba(0,0,0,.22);
+}
+.toolbar .title{font-weight:800;margin-right:auto}
+button{
+  border:0;
+  background:white;
+  color:#16324f;
+  font-weight:800;
+  padding:8px 12px;
+  border-radius:7px;
+  cursor:pointer;
+}
+button.btn-review{
+  background:#f0c040;
+  color:#16324f;
+  border:2px solid #c79a2f;
+}
+.badge{
+  font-size:12px;
+  background:#e9f2fb;
+  color:#16324f;
+  padding:5px 9px;
+  border-radius:999px;
+  font-weight:800;
+}
+.doc{
+  max-width:920px;
+  margin:0 auto;
+  padding:18px;
+}
+.page{
+  background:white;
+  border:1px solid #cdd7e2;
+  box-shadow:0 4px 18px rgba(28,45,64,.15);
+  padding:22px 26px 26px;
+  margin:0 0 16px;
+  position:relative;
+}
+.page::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:5px;
+  background:linear-gradient(90deg,var(--navy),var(--blue));
+}
+.cover-head{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  border-bottom:2px solid var(--navy);
+  padding:6px 0 10px;
+  margin-bottom:12px;
+}
+.brand{
+  font-size:22px;
+  line-height:1.05;
+  font-weight:900;
+  color:var(--navy);
+  letter-spacing:.2px;
+}
+.muted{
+  color:var(--muted);
+  font-size:12px;
+}
+.section-title{
+  font-size:18px;
+  color:var(--navy);
+  margin:10px 0 8px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.proposal-strip{
+  border-left:5px solid var(--blue);
+  background:#f3f8fd;
+  padding:10px 12px;
+  margin:8px 0 12px;
+}
+.proposal-strip b{
+  display:block;
+  color:var(--navy);
+  font-size:14px;
+  margin-bottom:3px;
+}
+.proposal-strip span{
+  font-size:12px;
+  color:#344b60;
+}
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin:9px 0;
+}
+.field{
+  border:1px solid #c6d2de;
+  background:#fbfdff;
+  padding:7px 8px;
+  font-size:12px;
+  min-height:30px;
+}
+.group-title{
+  color:var(--navy);
+  background:#eef5fb;
+  border-left:5px solid var(--blue);
+  padding:7px 9px;
+  margin:16px 0 8px;
+  font-size:16px;
+  font-weight:900;
+  break-after:avoid;
+  page-break-after:avoid;
+}
+.package-table{
+  width:100%;
+  table-layout:fixed;
+  border-collapse:collapse;
+  margin:0 0 10px;
+  border:1.6px solid var(--line);
+}
+.package-table th{
+  background:#2f6fa8;
+  color:white;
+  font-size:11.5px;
+  line-height:1.1;
+  padding:6px 5px;
+  text-align:center;
+  border:1.4px solid var(--line);
+}
+.package-table td{
+  border:1px solid #63778a;
+  padding:6px 6px;
+  vertical-align:middle;
+  font-size:10.7px;
+  line-height:1.16;
+}
+.package-table .desc{
+  width:48%;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.package-table .tuss{
+  width:39%;
+  vertical-align:top;
+  font-size:10.3px;
+}
+.package-table .value{
+  width:13%;
+  text-align:center;
+  font-weight:900;
+  background:var(--value);
+  overflow-wrap:break-word;
+}
+.package-table .tuss div{
+  margin:0 0 2px;
+}
+.package-table tr{
+  break-inside:avoid;
+  page-break-inside:avoid;
+}
+.small-note{
+  border:1px solid #cbd6e0;
+  border-left:4px solid var(--gold);
+  background:#fffdf7;
+  padding:6px 8px;
+  margin:0 0 11px;
+  font-size:10px;
+  line-height:1.25;
+}
+.small-note ul{
+  margin:0;
+  padding-left:13px;
+}
+.info-table{
+  width:100%;
+  table-layout:fixed;
+  border-collapse:collapse;
+  margin:0 0 10px;
+  border:1.5px solid var(--line);
+}
+.info-table th{
+  background:#2f6fa8;
+  color:white;
+  font-size:11.2px;
+  padding:5px;
+  border:1.3px solid var(--line);
+}
+.info-table td{
+  border:1px solid #63778a;
+  padding:5px 6px;
+  font-size:10.5px;
+  line-height:1.15;
+}
+.info-table td:last-child{
+  background:var(--value);
+  font-weight:900;
+  white-space:nowrap;
+}
+.footer-note{
+  font-size:10px;
+  color:var(--muted);
+}
+[contenteditable='true']:focus{
+  outline:2px solid #7ab7f5;
+  background:transparent!important;
+}
+
+/* Impressão: A4 retrato, sem exagero visual, sem capa separada */
+@media print{
+  @page{size:A4 portrait;margin:8mm}
+  body{background:white!important}
+  .toolbar{display:none!important}
+  .doc{
+    max-width:none!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .page{
+    border:0!important;
+    box-shadow:none!important;
+    padding:0!important;
+    margin:0 0 4mm!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  .page::before{height:2mm!important}
+  .cover-head{
+    padding:3px 0 5px!important;
+    margin-bottom:5px!important;
+    border-bottom:1.1pt solid var(--navy)!important;
+  }
+  .brand{font-size:13pt!important}
+  .muted{font-size:6.8pt!important}
+  .section-title{
+    font-size:11pt!important;
+    margin:5px 0 4px!important;
+  }
+  .proposal-strip{
+    padding:4px 6px!important;
+    margin:4px 0 5px!important;
+    border-left:3pt solid var(--blue)!important;
+    background:#f3f8fd!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .proposal-strip b{font-size:7.8pt!important;margin-bottom:1px!important}
+  .proposal-strip span{font-size:6.8pt!important}
+  .field-grid{
+    gap:2.5px!important;
+    margin:4px 0!important;
+  }
+  .field{
+    font-size:6.8pt!important;
+    padding:2.5px 4px!important;
+    min-height:auto!important;
+  }
+  .group-title{
+    font-size:9.5pt!important;
+    margin:5px 0 2.5px!important;
+    padding:3.5px 5px!important;
+    background:#eef5fb!important;
+    border-left:3pt solid var(--blue)!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+    break-after:avoid!important;
+    page-break-after:avoid!important;
+  }
+  .package-table{
+    margin:0 0 2.2mm!important;
+    border:.9pt solid var(--line)!important;
+  }
+  .package-table th{
+    font-size:6.6pt!important;
+    padding:2.5px!important;
+    background:#2f6fa8!important;
+    color:white!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .package-table td{
+    font-size:5.9pt!important;
+    line-height:1.02!important;
+    padding:2.2px 2.6px!important;
+    overflow-wrap:anywhere!important;
+  }
+  .package-table th,.package-table td{
+    border:.55pt solid #52677b!important;
+  }
+  .package-table .desc{width:48%!important}
+  .package-table .tuss{width:39%!important;font-size:5.8pt!important}
+  .package-table .value{
+    width:13%!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+    background:#e6eef7!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .package-table .tuss div{margin-bottom:0!important}
+  .package-table tr{
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  .small-note{
+    font-size:5.9pt!important;
+    line-height:1.08!important;
+    padding:2.5px 4px!important;
+    margin:0 0 2.2mm!important;
+    border-left:2pt solid var(--gold)!important;
+  }
+  .small-note ul{padding-left:9px!important}
+  .info-table{
+    margin:0 0 2.2mm!important;
+    border:.9pt solid var(--line)!important;
+  }
+  .info-table th{
+    font-size:6.4pt!important;
+    padding:2.5px!important;
+    background:#2f6fa8!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .info-table td{
+    font-size:5.9pt!important;
+    line-height:1.02!important;
+    padding:2.2px 2.6px!important;
+    border:.55pt solid #52677b!important;
+  }
+  .info-table td:last-child{
+    background:#e6eef7!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .footer-note{font-size:5.8pt!important}
+}
+
+/* ===== V6 - Tabelas padrão de mercado ===== */
+.market-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:0 0 10px;
+  border:1.6px solid var(--line);
+}
+.market-table th{
+  background:#2f6fa8;
+  color:#fff;
+  font-size:11.2px;
+  line-height:1.1;
+  padding:6px 5px;
+  text-align:center;
+  border:1.4px solid var(--line);
+}
+.market-table td{
+  border:1px solid #63778a;
+  padding:6px 6px;
+  vertical-align:top;
+  font-size:10.5px;
+  line-height:1.18;
+}
+.market-table td:first-child{
+  width:18%;
+  background:#f3f8fd;
+  color:var(--navy);
+  font-weight:900;
+}
+.market-table td:nth-child(2){width:28%}
+.market-table td:nth-child(3){width:31%}
+.market-table td:nth-child(4){width:23%}
+.add-area{
+  border:1px dashed #8aa2b8;
+  background:#fbfdff;
+  padding:8px 9px;
+  margin:0 0 12px;
+  font-size:10.5px;
+  line-height:1.25;
+}
+.market-intro{
+  background:#f7fbff;
+  border-left-color:var(--blue);
+}
+@media print{
+  .market-table{
+    margin:0 0 2.2mm!important;
+    border:.9pt solid var(--line)!important;
+  }
+  .market-table th{
+    font-size:6.35pt!important;
+    padding:2.5px!important;
+    background:#2f6fa8!important;
+    color:white!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .market-table td{
+    font-size:5.8pt!important;
+    line-height:1.05!important;
+    padding:2.3px 2.7px!important;
+    border:.55pt solid #52677b!important;
+    overflow-wrap:anywhere!important;
+  }
+  .market-table td:first-child{
+    background:#f3f8fd!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .add-area{
+    font-size:5.9pt!important;
+    line-height:1.08!important;
+    padding:3px 4px!important;
+    margin:0 0 2.2mm!important;
+  }
+}
+/* ===== Melhorias: campos pendentes, sumário, assinaturas, rodapé ===== */
+.todo{
+  /* Span vazio e editável; texto digitado herda estilos do documento */
+  display:inline;
+  vertical-align:baseline;
+  color:inherit;
+  font-style:inherit;
+  font-weight:inherit;
+  background:transparent;
+  border:none;
+  padding:0;
+  outline:none;
+  cursor:text;
+}
+/* Placeholder visível enquanto vazio */
+.todo:empty{
+  display:inline-block;
+  min-width:80px;
+}
+.todo:empty::before{
+  content:attr(data-placeholder);
+  color:#8a4800;
+  font-style:italic;
+  font-weight:700;
+  border-bottom:1.5px dashed #c79a2f;
+  pointer-events:none;
+  white-space:nowrap;
+}
+/* Foco no campo pendente */
+.todo:empty:focus::before{
+  border-bottom-color:#2f6fa8;
+  color:#1a3f6a;
+}
+/* Flag de revisão */
+.todo.flag:empty::before{
+  color:#7a2000;
+  background:rgba(255,210,80,.4);
+  border-bottom:1.5px solid #c0392b;
+  border-radius:2px;
+  padding:0 3px;
+}
+.toc{
+  border:1px solid #c6d2de;background:#f7fbff;
+  border-left:5px solid var(--blue);
+  padding:10px 12px;margin:9px 0 4px;
+}
+.toc b{display:block;color:var(--navy);font-size:13px;text-transform:uppercase;margin-bottom:6px}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:24px}
+.toc li{font-size:12px;line-height:1.5;color:#344b60;break-inside:avoid}
+.signatures{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.sign-box{text-align:center;font-size:12px;color:#344b60}
+.sign-line{border-top:1.5px solid var(--navy);margin:44px 10px 6px;padding-top:6px}
+.sign-box b{display:block;color:var(--navy);font-size:12.5px}
+.place-date{margin-top:18px;font-size:12.5px;color:#344b60}
+.footer-note.institutional{
+  margin-top:16px;padding-top:9px;border-top:1px solid #c6d2de;
+  text-align:center;
+}
+@media print{
+  @page{
+    @bottom-center{
+      content:"Página " counter(page) " de " counter(pages);
+      font-family:Arial,Helvetica,sans-serif;font-size:7pt;color:#5e6f80;
+    }
+  }
+  .todo:empty::before{
+    color:#8a4800!important;
+    font-style:italic!important;
+    font-weight:700!important;
+    border-bottom:1pt dashed #c79a2f!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .todo.flag:empty::before{
+    color:#7a2000!important;
+    background:rgba(255,210,80,.5)!important;
+    border-bottom:1pt solid #c0392b!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  .toc{padding:5px 7px!important;margin:5px 0 2px!important;border-left:3pt solid var(--blue)!important;background:#f7fbff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .toc b{font-size:8pt!important;margin-bottom:2px!important}
+  .toc li{font-size:7.3pt!important;line-height:1.3!important}
+  .signatures{margin-top:12mm!important;gap:16px!important;break-inside:avoid!important}
+  .sign-line{margin:16mm 6px 4px!important}
+  .sign-box,.place-date{font-size:7.8pt!important}
+  .footer-note.institutional{font-size:6.4pt!important;margin-top:6px!important}
+}
+
+/* ===== V7 - Controles para adicionar/remover tabelas e linhas ===== */
+.table-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0 6px;padding:6px 8px;border:1px dashed #8aa2b8;background:#f7fbff;color:#16324f;font-size:11px}
+.table-actions span{font-weight:900;margin-right:auto}
+.table-actions button{border:1px solid #c6d2de;background:#fff;color:#16324f;font-size:11px;font-weight:800;padding:4px 7px;border-radius:5px;cursor:pointer}
+.table-actions button:hover{background:#eef5fb}
+body.hide-table-controls .table-actions{display:none!important}
+.editor-help{border-left-color:#2f6fa8!important;background:#f7fbff!important}
+@media print{.table-actions,.table-editor-btn,.editor-help{display:none!important}}
+
+/* ===== V8 - seleção de linha para remoção ===== */
+tr.selected-row td{
+  background:#fff3bf!important;
+  box-shadow:inset 0 0 0 2px #f0c040;
+}
+tr.selected-row td.value,
+tr.selected-row td:last-child{
+  background:#ffe9a3!important;
+}
+@media print{
+  tr.selected-row td{
+    background:inherit!important;
+    box-shadow:none!important;
+  }
+}
+
+/* ===== V9 - remoção funcional de linha selecionada ===== */
+tr.selected-row > td{
+  background:#fff0a6!important;
+  box-shadow:inset 0 0 0 2px #e0ad00!important;
+}
+tr.selected-row > td.value,
+tr.selected-row > td:last-child{
+  background:#ffe38a!important;
+}
+.table-actions .danger-btn{
+  border-color:#c0392b!important;
+  color:#8a1f13!important;
+}
+@media print{
+  tr.selected-row > td{
+    background:inherit!important;
+    box-shadow:none!important;
+  }
+  .table-actions{display:none!important}
+}
+
+/* ===== V10 - Ferramenta padrão de contratos do hospital ===== */
+.contract-manager-btn{
+  background:#eaf2fb!important;
+  color:#16324f!important;
+  border:1px solid #bcd0e3!important;
+}
+.contract-status{
+  font-size:12px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  padding:5px 9px;
+  border-radius:999px;
+  color:#fff;
+}
+.contract-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(10,25,40,.55);
+  padding:24px;
+}
+.contract-modal.open{display:flex}
+.contract-modal-card{
+  width:min(980px,100%);
+  max-height:90vh;
+  overflow:auto;
+  margin:auto;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
+  border:1px solid #c9d6e4;
+}
+.contract-modal-head{
+  position:sticky;
+  top:0;
+  z-index:2;
+  display:flex;
+  gap:14px;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:#16324f;
+  color:#fff;
+}
+.contract-modal-head b{
+  display:block;
+  font-size:18px;
+}
+.contract-modal-head span{
+  display:block;
+  font-size:12px;
+  opacity:.86;
+  margin-top:2px;
+}
+.contract-modal-head button{
+  background:#fff;
+  color:#16324f;
+}
+.contract-modal-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  padding:12px 16px;
+  border-bottom:1px solid #d7e0ea;
+  background:#f7fbff;
+}
+.contract-modal-actions input[type="search"]{
+  flex:1;
+  min-width:240px;
+  border:1px solid #bdcada;
+  border-radius:8px;
+  padding:9px 10px;
+  font-size:13px;
+}
+.import-label{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:0;
+  background:#fff;
+  color:#16324f;
+  font-weight:800;
+  padding:8px 12px;
+  border-radius:7px;
+  cursor:pointer;
+  border:1px solid #bdcada;
+}
+.import-label input{display:none}
+.contracts-list{
+  padding:12px 16px 16px;
+}
+.contract-card{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+  border:1px solid #cbd6e2;
+  background:#fff;
+  border-radius:9px;
+  padding:12px;
+  margin-bottom:9px;
+}
+.contract-card:hover{background:#f8fbff}
+.contract-card-title{
+  font-weight:900;
+  color:#16324f;
+  font-size:15px;
+}
+.contract-card-meta{
+  color:#5e6f80;
+  font-size:12px;
+  margin-top:3px;
+}
+.contract-card-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.contract-card-actions button{
+  font-size:12px;
+  padding:7px 9px;
+  border:1px solid #bdcada;
+}
+.contract-card-actions .danger{
+  color:#8a1f13!important;
+  border-color:#d2aaa5!important;
+  background:#fff7f6!important;
+}
+.empty-contracts{
+  border:1px dashed #9fb2c5;
+  background:#f7fbff;
+  padding:18px;
+  border-radius:10px;
+  text-align:center;
+  color:#5e6f80;
+}
+@media print{
+  .contract-manager-btn,
+  .contract-status,
+  .contract-modal{
+    display:none!important;
+  }
+}
+
+/* ===== V12 - Banco ampliado IndexedDB ===== */
+.contract-status.warn{
+  background:#fff3bf!important;
+  color:#5c3d00!important;
+  border-color:#e0ad00!important;
+}
+
+/* ===== V13 - Refinamento profissional da interface e modelo contratual ===== */
+:root{
+  --hsh-navy:#0f2a43;
+  --hsh-blue:#2f6fa8;
+  --hsh-blue-soft:#eef6fd;
+  --hsh-gold:#b88922;
+  --hsh-ink:#132333;
+  --hsh-border:#c8d6e3;
+  --hsh-bg:#edf2f7;
+}
+body{
+  background:
+    radial-gradient(circle at top left,rgba(47,111,168,.12),transparent 35%),
+    linear-gradient(180deg,#e7edf4,#f4f7fa)!important;
+}
+.toolbar{
+  background:linear-gradient(90deg,#0b2034,#163b5e 60%,#2f6fa8)!important;
+  min-height:56px;
+  gap:8px!important;
+}
+.toolbar .title{
+  font-size:15px;
+  letter-spacing:.2px;
+}
+.toolbar button{
+  border-radius:9px!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset;
+}
+.badge-pro{
+  background:#fff7df!important;
+  color:#5b3a00!important;
+  border:1px solid #e3bf62!important;
+}
+.workspace-shell{
+  max-width:1280px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:18px;
+  padding:18px;
+}
+.workspace-shell .doc{
+  max-width:920px!important;
+  padding:0!important;
+}
+.workspace-sidebar{
+  position:sticky;
+  top:74px;
+  align-self:start;
+  background:#fff;
+  border:1px solid var(--hsh-border);
+  box-shadow:0 4px 18px rgba(20,45,70,.12);
+  border-radius:14px;
+  padding:14px;
+}
+.side-brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding-bottom:12px;
+  border-bottom:1px solid #d9e3ed;
+}
+.side-logo{
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--hsh-navy),var(--hsh-blue));
+  color:#fff;
+  font-weight:900;
+  border-radius:12px;
+}
+.side-brand b{
+  display:block;
+  color:var(--hsh-navy);
+  font-size:14px;
+}
+.side-brand span{
+  display:block;
+  color:#657789;
+  font-size:11px;
+}
+.side-section{
+  margin-top:14px;
+  border:1px solid #dce6ef;
+  background:#f8fbfe;
+  border-radius:11px;
+  padding:11px;
+}
+.side-section b{
+  display:block;
+  color:var(--hsh-navy);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+  margin-bottom:6px;
+}
+.side-section ol{
+  margin:0;
+  padding-left:18px;
+}
+.side-section li,
+.side-section p{
+  font-size:12px;
+  color:#3a5065;
+  line-height:1.45;
+  margin:4px 0;
+}
+.side-actions{
+  display:grid;
+  gap:7px;
+}
+.side-actions button{
+  width:100%;
+  border:1px solid #c8d6e3;
+  background:#fff;
+  color:var(--hsh-navy);
+  border-radius:8px;
+  padding:8px;
+  font-weight:900;
+  cursor:pointer;
+}
+.page{
+  border-radius:12px!important;
+  border:1px solid var(--hsh-border)!important;
+  box-shadow:0 6px 22px rgba(23,50,78,.13)!important;
+}
+.page::before{
+  height:6px!important;
+  background:linear-gradient(90deg,var(--hsh-navy),var(--hsh-blue),var(--hsh-gold))!important;
+}
+.cover-head{
+  border-bottom:2px solid var(--hsh-navy)!important;
+}
+.brand{
+  color:var(--hsh-navy)!important;
+}
+.section-title{
+  font-size:20px!important;
+  letter-spacing:.2px;
+}
+.proposal-strip{
+  border-left:6px solid var(--hsh-blue)!important;
+  background:linear-gradient(90deg,#f1f8ff,#fff)!important;
+}
+.group-title{
+  border-left:6px solid var(--hsh-blue)!important;
+  background:linear-gradient(90deg,#eaf4fc,#fff)!important;
+  border-radius:8px;
+  color:var(--hsh-navy)!important;
+}
+.package-table,
+.info-table,
+.market-table{
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 1px 0 rgba(0,0,0,.04);
+}
+.package-table th,
+.info-table th,
+.market-table th{
+  background:linear-gradient(180deg,#3679b4,#2d6398)!important;
+}
+.package-table .value,
+.info-table td:last-child{
+  background:#eaf2fb!important;
+}
+.table-actions{
+  border-radius:9px;
+  background:#f3f8fd!important;
+}
+.contract-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:8px;
+}
+.contract-clause{
+  border:1px solid #d4e0ea;
+  background:#fbfdff;
+  border-radius:10px;
+  padding:11px 12px;
+  font-size:12px;
+  line-height:1.35;
+}
+.contract-clause b{
+  display:block;
+  color:var(--hsh-navy);
+  font-size:13px;
+  margin-bottom:5px;
+}
+.contract-clause p{
+  margin:0;
+}
+.signatures{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:34px;
+}
+.sign-box{
+  text-align:center;
+  color:#344b60;
+  font-size:12px;
+}
+.sign-line{
+  border-top:1.6px solid var(--hsh-navy);
+  margin:46px 10px 7px;
+  padding-top:7px;
+}
+.sign-box b{
+  display:block;
+  color:var(--hsh-navy);
+}
+.place-date{
+  margin-top:18px;
+  font-size:12.5px;
+  color:#344b60;
+}
+.footer-note.institutional{
+  text-align:center;
+  border-top:1px solid #d2dde8;
+  padding-top:10px;
+  margin-top:18px;
+}
+.contract-modal-card{
+  border-radius:14px!important;
+}
+.contract-modal-head{
+  background:linear-gradient(90deg,#0f2a43,#2f6fa8)!important;
+}
+@media(max-width:1000px){
+  .workspace-shell{
+    grid-template-columns:1fr;
+    padding:12px;
+  }
+  .workspace-sidebar{
+    position:relative;
+    top:auto;
+  }
+  .contract-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media print{
+  .workspace-shell{
+    display:block!important;
+    padding:0!important;
+    max-width:none!important;
+  }
+  .workspace-sidebar{
+    display:none!important;
+  }
+  .workspace-shell .doc{
+    max-width:none!important;
+    width:100%!important;
+  }
+  .page{
+    border-radius:0!important;
+    box-shadow:none!important;
+    border:0!important;
+  }
+  .contract-grid{
+    grid-template-columns:1fr 1fr!important;
+    gap:3mm!important;
+  }
+  .contract-clause{
+    font-size:6.4pt!important;
+    line-height:1.12!important;
+    padding:3px 4px!important;
+    border-radius:0!important;
+  }
+  .contract-clause b{
+    font-size:7pt!important;
+    margin-bottom:1px!important;
+  }
+  .signatures{
+    margin-top:10mm!important;
+    gap:14mm!important;
+  }
+  .sign-line{
+    margin:14mm 4mm 3mm!important;
+  }
+  .sign-box,.place-date{
+    font-size:7pt!important;
+  }
+}
+
+/* ===== V14 - Interface limpa ===== */
+.clean-ui .toolbar{
+  min-height:auto!important;
+  padding:10px 16px!important;
+  display:grid!important;
+  grid-template-columns:auto 1fr auto!important;
+  grid-template-areas:
+    "title actions status";
+  align-items:center!important;
+  gap:10px!important;
+  background:linear-gradient(90deg,#0d263d,#1e527d)!important;
+}
+.clean-title{
+  grid-area:title;
+  font-size:16px!important;
+  font-weight:900!important;
+  white-space:nowrap;
+}
+.clean-toolbar-actions{
+  grid-area:actions;
+  display:flex;
+  gap:7px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.clean-ui .toolbar button{
+  padding:8px 11px!important;
+  border-radius:9px!important;
+  font-size:13px!important;
+}
+.clean-ui .toolbar .primary-action{
+  background:#ffffff!important;
+  color:#0f2a43!important;
+}
+.clean-status-row{
+  grid-area:status;
+  display:flex;
+  gap:6px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.clean-ui .contract-status{
+  font-size:11px!important;
+  padding:4px 8px!important;
+  max-width:220px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.clean-ui .badge{
+  font-size:11px!important;
+  padding:4px 8px!important;
+}
+.more-menu{
+  display:none;
+  position:absolute;
+  top:54px;
+  right:16px;
+  z-index:100;
+  min-width:250px;
+  padding:8px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid #c8d6e3;
+  box-shadow:0 14px 34px rgba(0,0,0,.23);
+}
+.more-menu.open{display:grid;gap:6px}
+.more-menu button{
+  width:100%;
+  text-align:left;
+  border:1px solid #d7e2ed!important;
+  background:#f8fbfe!important;
+  color:#16324f!important;
+  box-shadow:none!important;
+}
+.clean-ui .workspace-shell{
+  max-width:1180px!important;
+  grid-template-columns:1fr!important;
+  padding:14px!important;
+}
+.clean-ui.show-sidebar .workspace-shell{
+  grid-template-columns:240px 1fr!important;
+}
+.clean-ui .workspace-sidebar{
+  display:none!important;
+}
+.clean-ui.show-sidebar .workspace-sidebar{
+  display:block!important;
+}
+.clean-ui .workspace-shell .doc{
+  max-width:960px!important;
+  margin:0 auto!important;
+}
+.clean-ui .page{
+  padding:22px 26px 26px!important;
+  border-radius:10px!important;
+}
+.clean-ui .editor-help{
+  display:none!important;
+}
+.clean-ui .table-actions{
+  opacity:.82;
+  padding:5px 7px!important;
+  margin:4px 0 5px!important;
+}
+.clean-ui .table-actions span{
+  font-size:10px!important;
+}
+.clean-ui .table-actions button{
+  font-size:10px!important;
+  padding:3px 6px!important;
+}
+.clean-ui .proposal-strip{
+  padding:9px 11px!important;
+}
+.clean-ui .small-note{
+  background:#fffdf8!important;
+}
+.clean-ui .side-section{
+  padding:9px!important;
+}
+.clean-ui .side-actions button{
+  padding:7px!important;
+}
+@media(max-width:900px){
+  .clean-ui .toolbar{
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "title"
+      "actions"
+      "status"!important;
+  }
+  .clean-status-row{
+    justify-content:flex-start!important;
+  }
+  .more-menu{
+    top:112px;
+    left:12px;
+    right:12px;
+    width:auto;
+  }
+}
+@media print{
+  .more-menu{display:none!important}
+  .clean-ui .workspace-shell{
+    display:block!important;
+    padding:0!important;
+    max-width:none!important;
+  }
+}
+
+/* Rodapé de impressão: oculto na tela */
+.print-footer{display:none}
+
+/* ============================================================
+   REFINAMENTO DE IMPRESSÃO — versão profissional (prioridade máxima)
+   ============================================================ */
+@media print{
+  /* Margens institucionais + espaço reservado para o rodapé fixo */
+  @page{ size:A4 portrait; margin:15mm 15mm 20mm; }
+
+  /* (1) Esconder TODA a interface do app no PDF */
+  .clean-ui .toolbar,
+  body .toolbar,
+  .clean-status-row,
+  .clean-toolbar-actions,
+  .more-menu,
+  .more-btn,
+  .badge,
+  .badge-pro,
+  .workspace-sidebar,
+  .table-actions,
+  .editor-help,
+  .table-editor-btn,
+  .contract-modal{ display:none!important; }
+
+  .clean-ui .workspace-shell,
+  .workspace-shell{ display:block!important; padding:0!important; max-width:none!important; }
+  .workspace-shell .doc,
+  .doc{ max-width:none!important; width:100%!important; margin:0!important; padding:0!important; }
+
+  /* (2) Topo sem redundância */
+  .proposal-strip{ display:none!important; }
+  .section-title{ font-size:14pt!important; margin:4px 0 3px!important; line-height:1.15!important; }
+  .small-note.premium-intro{
+    border:0!important; border-left:0!important; background:transparent!important;
+    padding:0!important; margin:1px 0 7px!important;
+    font-size:8.2pt!important; color:#33485c!important; font-style:italic!important;
+  }
+
+  /* (3) Aligeirar molduras — menos "formulário", mais documento */
+  .cover-head{ border-bottom:1.1pt solid var(--navy)!important; padding-bottom:4px!important; margin-bottom:6px!important; }
+  .field-grid{ gap:0!important; border-top:.6pt solid #c6d2de!important; margin:5px 0 8px!important; }
+  .field{
+    border:0!important; background:transparent!important;
+    border-bottom:.5pt solid #e1e7ee!important;
+    padding:2.6px 2px!important; font-size:7.8pt!important; min-height:0!important;
+  }
+  .small-note{
+    border:0!important; border-left:2pt solid var(--gold)!important;
+    background:transparent!important; padding:1px 0 1px 7px!important; margin:0 0 6px!important;
+  }
+  .group-title{
+    background:transparent!important; color:var(--navy)!important;
+    border-left:0!important; border-bottom:1pt solid var(--navy)!important;
+    padding:2px 0!important; margin:10px 0 4px!important; font-size:10.5pt!important;
+    -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;
+  }
+  .toc{ border:0!important; border-left:2pt solid var(--blue)!important; background:transparent!important; padding:2px 0 2px 8px!important; }
+
+  /* (4) Fluxo: evitar páginas semi-vazias e quebras feias */
+  .page{ break-after:auto!important; page-break-after:auto!important; margin:0 0 3mm!important; padding:0!important; border:0!important; box-shadow:none!important; }
+  .page::before{ display:none!important; }
+  .package-table, .market-table, .info-table{ break-inside:auto!important; }
+  tr{ break-inside:avoid!important; page-break-inside:avoid!important; }
+  thead{ display:table-header-group!important; }
+  .group-title{ break-after:avoid!important; page-break-after:avoid!important; }
+  .signatures{ break-inside:avoid!important; }
+
+  /* (5) Rodapé institucional fixo em todas as páginas */
+  .print-footer{
+    display:block!important;
+    position:fixed; left:0; right:0; bottom:7mm;
+    text-align:center; font-size:6.6pt; color:#5e6f80;
+    border-top:.5pt solid #c6d2de; padding-top:2px;
+    -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;
+  }
+}
+
+/* ===== V15 - Operacionalização ===== */
+body.preview-mode .table-actions,
+body.preview-mode .editor-help,
+body.preview-mode .todo:empty::before{ display:none!important }
+body.preview-mode [contenteditable]{
+  pointer-events:none!important;
+  cursor:default!important;
+  outline:none!important;
+  caret-color:transparent!important;
+  user-select:text!important;
+}
+body.preview-mode [contenteditable]:focus{
+  outline:none!important;
+  background:transparent!important;
+}
+#modeStatus{background:#eaf2fb!important;color:#12314c!important}.data-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}.data-form label{display:grid;gap:4px;font-size:12px;color:#16324f;font-weight:900}.data-form input,.data-form select,.data-form textarea,.contract-modal-actions select{width:100%;border:1px solid #bdcada;border-radius:8px;padding:9px 10px;font-size:13px;background:#fff;color:#14212e}.data-form .wide{grid-column:1/-1}.small-modal{width:min(760px,100%)!important}.modal-footer-actions{display:flex;gap:8px;justify-content:flex-end;padding:12px 16px;border-top:1px solid #d7e0ea;background:#f7fbff}.validation-results{padding:14px 16px 18px}.validation-summary{border:1px solid #cbd6e2;border-left:5px solid #2f6fa8;background:#f7fbff;padding:12px;border-radius:9px;margin-bottom:10px}.validation-summary.ok{border-left-color:#2e8b57;background:#f3fff7}.validation-summary.warn{border-left-color:#c78a00;background:#fffaf0}.validation-list{display:grid;gap:8px}.validation-item{border:1px solid #d6e0ea;border-radius:8px;padding:9px 10px;background:#fff;font-size:13px}.version-badge,.status-badge{display:inline-block;font-size:11px;font-weight:900;border-radius:999px;padding:3px 8px;margin-left:6px;background:#eef5fb;color:#16324f;border:1px solid #cbd6e2}.status-badge.Rascunho{background:#f3f6fa;color:#344b60}.status-badge.Em-negociação{background:#fff7df;color:#6b4600;border-color:#e3bf62}.status-badge.Aprovado{background:#eaf8ef;color:#136b38;border-color:#9dd7b4}.status-badge.Arquivado{background:#f2f2f2;color:#555}.contract-card-meta .obs{display:block;margin-top:4px;color:#6c7c8d;font-style:italic}@media(max-width:760px){.data-form{grid-template-columns:1fr}}@media print{.data-form,.modal-footer-actions,.validation-results,.version-badge,.status-badge{display:none!important}}
+
+/* ===== V16 - Interface 100% menu lateral ===== */
+:root{--v16-side-w:276px;--v16-side-compact:76px;--v16-navy:#0d263d;--v16-blue:#2f6fa8}
+.v16-sidebar-ui .toolbar{display:none!important}
+.v16-sidebar-ui{background:radial-gradient(circle at top left,rgba(47,111,168,.12),transparent 34%),linear-gradient(180deg,#e8eff6,#f6f8fb)!important}
+.v16-side-nav{position:fixed;left:0;top:0;bottom:0;width:var(--v16-side-w);z-index:900;background:linear-gradient(180deg,#0d263d,#143a5c 64%,#0d263d);color:#fff;display:flex;flex-direction:column;box-shadow:8px 0 28px rgba(11,31,50,.22);border-right:1px solid rgba(255,255,255,.12)}
+.v16-side-head{display:grid;grid-template-columns:44px 1fr 34px;gap:10px;align-items:center;padding:16px 14px 14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.v16-logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#fff,#d9e9f7);color:#0d263d;display:flex;align-items:center;justify-content:center;font-weight:950}
+.v16-brand-text b{display:block;font-size:16px;line-height:1.05}.v16-brand-text span{display:block;font-size:11px;opacity:.74;margin-top:2px}
+.v16-collapse{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:9px;cursor:pointer;font-weight:900}
+.v16-current{margin:12px 12px 8px;padding:11px 12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);border-radius:13px}
+.v16-current .label{display:block;font-size:10px;text-transform:uppercase;opacity:.68;letter-spacing:.45px;margin-bottom:4px}.v16-current b{display:block;font-size:13px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.v16-current small{display:block;margin-top:5px;font-size:10.5px;opacity:.76;line-height:1.2}
+.v16-menu{padding:6px 10px 14px;overflow:auto;flex:1}.v16-section{margin-bottom:12px}.v16-section-title{color:rgba(255,255,255,.58);font-size:10px;text-transform:uppercase;letter-spacing:.55px;font-weight:900;padding:7px 8px 5px}
+.v16-btn{width:100%;display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.055);color:#fff;border-radius:10px;padding:8px 9px;margin:4px 0;cursor:pointer;text-align:left;font-weight:850;font-size:12.5px}.v16-btn:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.22)}.v16-btn .ico{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(255,255,255,.1);font-size:13px}.v16-primary{background:#fff!important;color:#0d263d!important}.v16-primary .ico{background:#eaf2fb!important}
+.v16-side-foot{padding:10px 14px;border-top:1px solid rgba(255,255,255,.12);font-size:11px;opacity:.68}
+.v16-sidebar-ui .workspace-shell{margin-left:var(--v16-side-w)!important;max-width:none!important;width:auto!important;padding:16px 18px!important;display:block!important}.v16-sidebar-ui .workspace-shell .doc,.v16-sidebar-ui .doc{max-width:980px!important;margin:0 auto!important;padding:0!important}.v16-sidebar-ui .page{border-radius:12px!important}
+.v16-mobile-menu{display:none;position:fixed;top:12px;left:12px;z-index:950;width:42px;height:42px;border-radius:11px;background:#0d263d;color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 22px rgba(0,0,0,.2)}.v16-overlay{display:none}
+.v16-sidebar-ui.sidebar-compact .v16-side-nav{width:var(--v16-side-compact)}.v16-sidebar-ui.sidebar-compact .workspace-shell{margin-left:var(--v16-side-compact)!important}.v16-sidebar-ui.sidebar-compact .v16-brand-text,.v16-sidebar-ui.sidebar-compact .v16-current,.v16-sidebar-ui.sidebar-compact .v16-section-title,.v16-sidebar-ui.sidebar-compact .v16-btn .txt,.v16-sidebar-ui.sidebar-compact .v16-side-foot{display:none!important}.v16-sidebar-ui.sidebar-compact .v16-side-head{grid-template-columns:44px;justify-content:center}.v16-sidebar-ui.sidebar-compact .v16-collapse{position:absolute;left:21px;top:68px;width:34px}.v16-sidebar-ui.sidebar-compact .v16-menu{padding-top:46px}.v16-sidebar-ui.sidebar-compact .v16-btn{grid-template-columns:1fr;justify-items:center;padding:8px 6px}
+@media(max-width:900px){.v16-mobile-menu{display:block}.v16-side-nav{transform:translateX(-104%);transition:transform .22s ease}.v16-sidebar-ui.mobile-sidebar-open .v16-side-nav{transform:translateX(0)}.v16-overlay{display:none;position:fixed;inset:0;background:rgba(6,20,32,.48);z-index:850}.v16-sidebar-ui.mobile-sidebar-open .v16-overlay{display:block}.v16-sidebar-ui .workspace-shell{margin-left:0!important;padding:64px 10px 12px!important}.v16-sidebar-ui.sidebar-compact .workspace-shell{margin-left:0!important}}
+@media print{.v16-side-nav,.v16-mobile-menu,.v16-overlay{display:none!important}.v16-sidebar-ui .workspace-shell{margin-left:0!important;padding:0!important;display:block!important}.v16-sidebar-ui .doc,.v16-sidebar-ui .workspace-shell .doc{max-width:none!important;width:100%!important}}
+
+/* ===== V17 - Pesquisa nativa ===== */
+.native-search-modal .search-card{
+  width:min(1180px,96vw)!important;
+}
+.native-search-tools{
+  padding:14px 16px;
+  border-bottom:1px solid #d7e0ea;
+  background:#f7fbff;
+}
+.search-line{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+}
+.search-line input{
+  width:100%;
+  border:1px solid #bdcada;
+  border-radius:10px;
+  padding:11px 12px;
+  font-size:14px;
+}
+.search-line button,
+.quick-filters button{
+  border:1px solid #bdcada;
+  background:#fff;
+  color:#16324f;
+  font-weight:900;
+  border-radius:9px;
+  padding:9px 12px;
+  cursor:pointer;
+}
+.quick-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+.quick-filters button{
+  font-size:12px;
+  padding:7px 10px;
+}
+.search-dashboard{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  padding:12px 16px 0;
+}
+.dash-box{
+  border:1px solid #d5e0ea;
+  background:#fff;
+  border-radius:10px;
+  padding:10px 12px;
+}
+.dash-box b{
+  display:block;
+  color:#0d263d;
+  font-size:20px;
+  line-height:1;
+}
+.dash-box span{
+  display:block;
+  color:#617487;
+  font-size:11px;
+  margin-top:4px;
+}
+.native-search-results{
+  padding:12px 16px 18px;
+  max-height:62vh;
+  overflow:auto;
+}
+.result-group-title{
+  color:#0d263d;
+  font-weight:950;
+  font-size:15px;
+  margin:14px 0 7px;
+  border-left:5px solid #2f6fa8;
+  padding-left:8px;
+}
+.search-result-card{
+  border:1px solid #d3dde8;
+  border-radius:10px;
+  background:#fff;
+  margin:0 0 9px;
+  padding:11px 12px;
+}
+.search-result-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+.search-result-title{
+  font-weight:950;
+  color:#0d263d;
+  font-size:14px;
+}
+.search-result-meta{
+  color:#617487;
+  font-size:11px;
+  margin-top:2px;
+}
+.search-result-value{
+  background:#eaf2fb;
+  border:1px solid #c7d7e6;
+  color:#0d263d;
+  font-weight:950;
+  border-radius:999px;
+  padding:5px 9px;
+  white-space:nowrap;
+  font-size:12px;
+}
+.search-snippet{
+  margin-top:8px;
+  font-size:12px;
+  line-height:1.35;
+  color:#263b50;
+  background:#f9fbfd;
+  border-left:4px solid #b88922;
+  padding:7px 8px;
+}
+.search-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:9px;
+}
+.search-actions button{
+  font-size:12px;
+  padding:6px 9px;
+  border:1px solid #bdcada;
+  background:#fff;
+  color:#16324f;
+  border-radius:8px;
+  font-weight:900;
+}
+.search-tag{
+  display:inline-block;
+  font-size:10px;
+  font-weight:900;
+  border-radius:999px;
+  padding:3px 7px;
+  margin:2px 3px 0 0;
+  background:#eef5fb;
+  color:#16324f;
+  border:1px solid #cbd6e2;
+}
+.search-tag.warn{
+  background:#fff7df;
+  color:#6b4600;
+  border-color:#e3bf62;
+}
+.search-tag.danger{
+  background:#fff0ed;
+  color:#8a1f13;
+  border-color:#e2b8b0;
+}
+mark.search-mark{
+  background:#ffe88a;
+  color:#111;
+  padding:0 2px;
+  border-radius:2px;
+}
+@media(max-width:760px){
+  .search-line{grid-template-columns:1fr}
+  .search-dashboard{grid-template-columns:1fr 1fr}
+}
+@media print{
+  .native-search-modal{display:none!important}
+}
+
+/* ===== V18 - Pesquisa nativa corrigida e sempre visível ===== */
+.v16-search-highlight{
+  background:#fff7df!important;
+  color:#0d263d!important;
+  border-color:#e3bf62!important;
+}
+.v16-search-highlight .ico{
+  background:#ffe8a6!important;
+}
+.native-search-float{
+  position:fixed;
+  left:calc(var(--v16-side-w,276px) + 18px);
+  bottom:18px;
+  z-index:700;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  border:1px solid #d5b45b;
+  background:#fff7df;
+  color:#0d263d;
+  font-size:24px;
+  font-weight:950;
+  box-shadow:0 10px 28px rgba(13,38,61,.18);
+  cursor:pointer;
+}
+.sidebar-compact .native-search-float{
+  left:calc(var(--v16-side-compact,76px) + 18px);
+}
+.native-search-modal .search-card{width:min(1180px,96vw)!important}
+.native-search-tools{padding:14px 16px;border-bottom:1px solid #d7e0ea;background:#f7fbff}
+.search-line{display:grid;grid-template-columns:1fr auto;gap:8px}
+.search-line input{width:100%;border:1px solid #bdcada;border-radius:10px;padding:11px 12px;font-size:14px}
+.search-line button,.quick-filters button{border:1px solid #bdcada;background:#fff;color:#16324f;font-weight:900;border-radius:9px;padding:9px 12px;cursor:pointer}
+.quick-filters{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.quick-filters button{font-size:12px;padding:7px 10px}
+.search-dashboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px 16px 0}
+.dash-box{border:1px solid #d5e0ea;background:#fff;border-radius:10px;padding:10px 12px}
+.dash-box b{display:block;color:#0d263d;font-size:20px;line-height:1}
+.dash-box span{display:block;color:#617487;font-size:11px;margin-top:4px}
+.native-search-results{padding:12px 16px 18px;max-height:62vh;overflow:auto}
+.result-group-title{color:#0d263d;font-weight:950;font-size:15px;margin:14px 0 7px;border-left:5px solid #2f6fa8;padding-left:8px}
+.search-result-card{border:1px solid #d3dde8;border-radius:10px;background:#fff;margin:0 0 9px;padding:11px 12px}
+.search-result-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.search-result-title{font-weight:950;color:#0d263d;font-size:14px}
+.search-result-meta{color:#617487;font-size:11px;margin-top:2px}
+.search-result-value{background:#eaf2fb;border:1px solid #c7d7e6;color:#0d263d;font-weight:950;border-radius:999px;padding:5px 9px;white-space:nowrap;font-size:12px}
+.search-snippet{margin-top:8px;font-size:12px;line-height:1.35;color:#263b50;background:#f9fbfd;border-left:4px solid #b88922;padding:7px 8px}
+.search-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.search-actions button{font-size:12px;padding:6px 9px;border:1px solid #bdcada;background:#fff;color:#16324f;border-radius:8px;font-weight:900}
+.search-tag{display:inline-block;font-size:10px;font-weight:900;border-radius:999px;padding:3px 7px;margin:2px 3px 0 0;background:#eef5fb;color:#16324f;border:1px solid #cbd6e2}
+.search-tag.warn{background:#fff7df;color:#6b4600;border-color:#e3bf62}
+.search-tag.danger{background:#fff0ed;color:#8a1f13;border-color:#e2b8b0}
+mark.search-mark{background:#ffe88a;color:#111;padding:0 2px;border-radius:2px}
+@media(max-width:900px){.native-search-float{left:12px;bottom:12px}.search-line{grid-template-columns:1fr}.search-dashboard{grid-template-columns:1fr 1fr}}
+@media print{.native-search-modal,.native-search-float{display:none!important}}
+
+/* ── Toast de notificação ── */
+#hsh-toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#16324f;color:#fff;padding:10px 20px;border-radius:10px;
+  font-size:13px;font-weight:700;opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;z-index:9999;white-space:nowrap;
+  box-shadow:0 4px 18px rgba(0,0,0,.25);
+}
+#hsh-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#hsh-toast.success{background:#1a6e3c}
+#hsh-toast.warn{background:#8a5200}
+@media print{#hsh-toast{display:none!important}}
+</style></head><body class="clean-ui edit-mode v16-sidebar-ui sidebar-expanded">
+<div aria-hidden="true" class="contract-modal native-search-modal" id="nativeSearchModal">
+<div class="contract-modal-card search-card">
+<div class="contract-modal-head">
+<div>
+<b>Pesquisa nativa de contratos</b>
+<span>Consulte TUSS, CBHPM, SIMPRO, Brasíndice, valores e contratos pendentes de atualização.</span>
+</div>
+<button onclick="fecharPesquisaNativa()" type="button">Fechar</button>
+</div>
+<div class="native-search-tools">
+<div class="search-line">
+<input id="nativeSearchInput" oninput="executarPesquisaNativa(false)" onkeydown="if(event.key==='Enter'){executarPesquisaNativa(true)}" placeholder="Digite TUSS, procedimento, CBHPM, SIMPRO, convênio ou valor..." type="search"/>
+<button onclick="executarPesquisaNativa(true)" type="button">Pesquisar</button>
+</div>
+<div class="quick-filters">
+<button onclick="pesquisaRapida('CBHPM')" type="button">CBHPM vigente/antiga</button>
+<button onclick="pesquisaRapida('SIMPRO')" type="button">SIMPRO</button>
+<button onclick="pesquisaRapida('BRASÍNDICE')" type="button">Brasíndice</button>
+<button onclick="pesquisaRapida('OPME')" type="button">OPME</button>
+<button onclick="listarContratosParaAtualizar()" type="button">Contratos para atualizar</button>
+<button onclick="listarContratosAntigos()" type="button">Contratos mais antigos</button>
+<button onclick="buscarTussSelecionado()" type="button">Buscar TUSS selecionado</button>
+</div>
+</div>
+<div class="search-dashboard" id="searchDashboard">
+<div class="dash-box"><b id="dashTotalContratos">0</b><span>contratos salvos</span></div>
+<div class="dash-box"><b id="dashAntigos">0</b><span>possivelmente vencidos/antigos</span></div>
+<div class="dash-box"><b id="dashPendentes">0</b><span>com campos pendentes</span></div>
+<div class="dash-box"><b id="dashTuss">0</b><span>itens TUSS localizados</span></div>
+</div>
+<div class="native-search-results" id="nativeSearchResults">
+<div class="empty-contracts">Use a pesquisa para localizar valores por TUSS, verificar CBHPM/SIMPRO/BRASÍNDICE ou encontrar contratos que precisam atualizar.</div>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="contract-modal" id="versionModal"><div class="contract-modal-card">
+<div class="contract-modal-head"><div><b>Histórico de versões</b><span>Versões salvas do contrato atual.</span></div><button onclick="fecharHistoricoVersoes()">Fechar</button></div>
+<div class="contract-modal-actions"><button onclick="salvarVersaoManual()">Salvar nova versão</button></div><div class="contracts-list" id="versionList"></div></div></div>
+<div aria-hidden="true" class="contract-modal" id="validationModal"><div class="contract-modal-card">
+<div class="contract-modal-head"><div><b>Validação do contrato</b><span>Checklist antes de imprimir/enviar.</span></div><button onclick="fecharValidacao()">Fechar</button></div>
+<div class="validation-results" id="validationResults"></div></div></div>
+<div aria-hidden="true" class="contract-modal" id="rulesModal"><div class="contract-modal-card small-modal">
+<div class="contract-modal-head"><div><b>Regras comerciais padrão</b><span>Reutilize critérios em novos contratos.</span></div><button onclick="fecharRegrasPadrao()">Fechar</button></div>
+<div class="data-form">
+<label>CBHPM<input id="ruleCBHPM" type="text"/></label><label>SIMPRO<input id="ruleSIMPRO" type="text"/></label><label>BRASÍNDICE<input id="ruleBRASINDICE" type="text"/></label><label>OPME<input id="ruleOPME" type="text"/></label><label>TUSS/TISS<input id="ruleTUSS" type="text"/></label><label class="wide">Medicamentos excluídos<textarea id="ruleMED" rows="3"></textarea></label>
+</div><div class="modal-footer-actions"><button onclick="salvarRegrasPadrao()">Salvar regras</button><button onclick="aplicarRegrasPadraoNoContrato()">Aplicar no contrato</button></div></div></div>
+<div aria-hidden="true" class="contract-modal" id="contractDataModal"><div class="contract-modal-card small-modal">
+<div class="contract-modal-head"><div><b>Dados do contrato</b><span>Preencha e aplique no documento.</span></div><button onclick="fecharDadosContrato()">Fechar</button></div>
+<div class="data-form">
+<label>Convênio<input id="dataConvenio" type="text"/></label><label>CNPJ / Identificação<input id="dataCnpj" type="text"/></label>
+<label>Data da proposta<input id="dataProposta" type="text"/></label><label>Validade<input id="dataValidade" type="text"/></label>
+<label>Contato comercial<input id="dataContato" type="text"/></label><label>Responsável técnico<input id="dataResponsavel" type="text"/></label>
+<label>CRM / Registro<input id="dataRegistro" type="text"/></label><label>Forma/prazo pagamento<input id="dataPagamento" type="text"/></label>
+<label>Índice reajuste<input id="dataReajuste" type="text"/></label><label>Tributos<input id="dataTributos" type="text"/></label>
+<label>Status<select id="dataStatus"><option>Rascunho</option><option>Em negociação</option><option>Aprovado</option><option>Arquivado</option></select></label>
+<label class="wide">Observação interna<textarea id="dataObsInterna" rows="3"></textarea></label>
+</div><div class="modal-footer-actions"><button onclick="aplicarDadosContrato()">Aplicar</button><button onclick="salvarContratoAtual()">Salvar contrato</button></div></div></div>
+<div aria-hidden="true" class="contract-modal" id="newContractModal"><div class="contract-modal-card small-modal">
+<div class="contract-modal-head"><div><b>Novo contrato</b><span>Escolha um modelo e informe o convênio.</span></div><button onclick="fecharNovoContratoModal()">Fechar</button></div>
+<div class="data-form">
+<label>Nome do convênio<input id="newContractName" placeholder="Ex.: Marinha do Brasil / DGN" type="text"/></label>
+<label>Modelo<select id="newContractTemplate">
+<option value="pacotes">Proposta de Pacotes Hospitalares</option><option value="prestacao">Contrato de Prestação de Serviços</option><option value="aditivo">Aditivo de Reajuste</option><option value="diarias">Tabela de Diárias e Taxas</option><option value="prontoSocorro">Proposta de Pronto Socorro</option><option value="maternoInfantil">Proposta Materno-Infantil</option><option value="hemodinamica">Proposta Hemodinâmica</option>
+</select></label></div><div class="modal-footer-actions"><button onclick="criarContratoComModelo()">Criar contrato</button></div></div></div>
+<div aria-hidden="true" class="print-footer">HOSPITAL SANTA HELENA • CNPJ 28.847.176/0001-00 • Cabo Frio / RJ • Documento confidencial destinado exclusivamente à Marinha do Brasil / DGN</div>
+<div aria-hidden="true" class="contract-modal" id="contractsModal">
+<div class="contract-modal-card">
+<div class="contract-modal-head">
+<div>
+<b>Contratos salvos</b>
+<span>Reabra, edite, exclua ou crie propostas por convênio.</span>
+</div>
+<button onclick="fecharContratosSalvos()" type="button">Fechar</button>
+</div>
+<div class="contract-modal-actions">
+<input id="contractSearch" oninput="renderContratosSalvos()" placeholder="Pesquisar convênio..." type="search"/>
+<button onclick="novoContrato()" type="button">+ Novo contrato</button>
+<button onclick="exportarBackupContratos()" type="button">Backup JSON</button>
+<label class="import-label">Importar JSON<input accept=".json,application/json" onchange="importarBackupContratos(event)" type="file"/></label>
+<select id="contractStatusFilter" onchange="renderContratosSalvos()"><option value="">Todos os status</option><option>Rascunho</option><option>Em negociação</option><option>Aprovado</option><option>Arquivado</option></select></div>
+<div class="contracts-list" id="contractsList"></div>
+</div>
+</div>
+<div aria-hidden="true" class="toolbar">
+<div class="title clean-title">HSH Contratos</div>
+<div class="clean-toolbar-actions">
+<button class="primary-action" onclick="novoContrato()">+ Novo</button>
+<button onclick="salvarContratoAtual()">Salvar</button>
+<button onclick="abrirContratosSalvos()">Contratos</button>
+<button id="modeToggleBtn" onclick="toggleEditPreviewMode()">Visualizar</button>
+<button onclick="abrirDadosContrato()">Dados</button>
+<button onclick="validarContrato(true)">Validar</button>
+<button onclick="window.print()">PDF</button>
+<button class="more-btn" onclick="toggleMoreMenu()">Mais ▾</button>
+</div>
+<div class="more-menu" id="moreMenu">
+<button onclick="revisarEImprimir()">Revisar antes de imprimir</button>
+<button onclick="abrirRegrasPadrao()">Regras comerciais padrão</button>
+<button onclick="abrirHistoricoVersoes()">Histórico de versões</button>
+<button onclick="salvarVersaoManual()">Salvar versão do contrato</button>
+<button onclick="limparLinhasVazias()">Limpar linhas vazias</button>
+<button onclick="exportarContratoAtual()">Exportar contrato atual</button>
+<button onclick="document.getElementById('importSingleContractInput').click()">Importar contrato</button>
+<button onclick="exportHtml()">Salvar ferramenta em HTML</button>
+<button onclick="addPackageSection()">+ Nova tabela de pacote</button>
+<button onclick="addMarketSection()">+ Nova tabela padrão</button>
+<button onclick="toggleTableControls()">Mostrar/ocultar controles</button>
+<button onclick="toggleSidebar()">Mostrar/ocultar painel lateral</button>
+</div>
+<input accept=".json,application/json,.html,text/html" id="importSingleContractInput" onchange="importarContratoAtual(event)" style="display:none" type="file"/>
+<div class="clean-status-row">
+<span class="contract-status" id="currentContractStatus">Contrato atual: não salvo</span>
+<span class="contract-status" id="storageDebugStatus">Banco local: verificando...</span>
+<span class="contract-status" id="modeStatus">Modo: edição</span>
+<span class="badge badge-pro">v15 operacional</span>
+</div>
+</div>
+<aside class="v16-side-nav" contenteditable="false" id="v16SideNav">
+<div class="v16-side-head">
+<div class="v16-logo">HSH</div>
+<div class="v16-brand-text">
+<b>Contratos</b>
+<span>Hospital Santa Helena</span>
+</div>
+<button class="v16-collapse" onclick="toggleSidebarCompact()" title="Recolher/expandir menu" type="button">☰</button>
+</div>
+<div class="v16-current">
+<span class="label">Contrato atual</span>
+<b id="v16CurrentContract">não salvo</b>
+<small id="v16StorageStatus">Banco local: verificando...</small>
+<small id="v16ModeStatus">Modo: edição</small>
+</div>
+<nav class="v16-menu">
+<div class="v16-section">
+<div class="v16-section-title">Ações principais</div>
+<button class="v16-btn v16-primary" onclick="novoContrato()"><span class="ico">＋</span><span class="txt">Novo contrato</span></button>
+<button class="v16-btn" onclick="salvarContratoAtual()"><span class="ico">💾</span><span class="txt">Salvar</span></button>
+<button class="v16-btn" onclick="abrirContratosSalvos()"><span class="ico">📁</span><span class="txt">Contratos salvos</span></button>
+<button class="v16-btn" id="nativeSearchBtn" onclick="abrirPesquisaNativa()">
+<span class="ico">⌕</span><span class="txt">Pesquisa nativa</span>
+</button>
+<button class="v16-btn" onclick="abrirDadosContrato()"><span class="ico">🧾</span><span class="txt">Dados do contrato</span></button>
+<button class="v16-btn" onclick="validarContrato(true)"><span class="ico">✓</span><span class="txt">Validar</span></button>
+<button class="v16-btn" onclick="window.print()"><span class="ico">📄</span><span class="txt">Gerar PDF</span></button>
+</div>
+<div class="v16-section">
+<div class="v16-section-title">Edição</div>
+<button class="v16-btn" id="v16ModeToggleBtn" onclick="toggleEditPreviewMode()"><span class="ico">👁</span><span class="txt">Visualizar</span></button>
+<button class="v16-btn" onclick="addPackageSection()"><span class="ico">▦</span><span class="txt">Nova tabela de pacote</span></button>
+<button class="v16-btn" onclick="addMarketSection()"><span class="ico">▤</span><span class="txt">Nova tabela padrão</span></button>
+<button class="v16-btn" onclick="toggleTableControls()"><span class="ico">⚙</span><span class="txt">Controles de tabela</span></button>
+<button class="v16-btn" onclick="limparLinhasVazias()"><span class="ico">⌫</span><span class="txt">Limpar linhas vazias</span></button>
+</div>
+<div class="v16-section">
+<div class="v16-section-title">Gestão</div>
+<button class="v16-btn" onclick="abrirHistoricoVersoes()"><span class="ico">🕓</span><span class="txt">Histórico de versões</span></button>
+<button class="v16-btn" onclick="salvarVersaoManual()"><span class="ico">＋</span><span class="txt">Salvar versão</span></button>
+<button class="v16-btn" onclick="abrirRegrasPadrao()"><span class="ico">📌</span><span class="txt">Regras comerciais</span></button>
+<button class="v16-btn" onclick="revisarEImprimir()"><span class="ico">🔎</span><span class="txt">Revisar e imprimir</span></button>
+</div>
+<div class="v16-section">
+<div class="v16-section-title">Importar / exportar</div>
+<button class="v16-btn" onclick="exportarContratoAtual()"><span class="ico">⇩</span><span class="txt">Exportar contrato</span></button>
+<button class="v16-btn" onclick="document.getElementById('importSingleContractInput')?.click()"><span class="ico">⇧</span><span class="txt">Importar contrato</span></button>
+<button class="v16-btn" onclick="exportarBackupContratos()"><span class="ico">🗄</span><span class="txt">Backup geral</span></button>
+<button class="v16-btn" onclick="exportHtml()"><span class="ico">⌘</span><span class="txt">Salvar ferramenta HTML</span></button>
+</div>
+</nav>
+<div class="v16-side-foot">v16 • Menu lateral</div>
+</aside>
+<button class="v16-mobile-menu" onclick="toggleSidebarMobile()" type="button">☰</button>
+<div class="v16-overlay" onclick="toggleSidebarMobile()"></div>
+<div class="workspace-shell">
+<main class="doc"><section class="page"><div class="cover-head"><div><div class="brand" contenteditable="true">HOSPITAL SANTA HELENA</div><div class="muted" contenteditable="true">CNPJ 28.847.176/0001-00 • Cabo Frio / RJ</div></div><div class="muted" contenteditable="true">Proposta técnico-comercial</div></div><h1 class="section-title" contenteditable="true">PROPOSTA DE PACOTES HOSPITALARES – MARINHA DO BRASIL / DGN</h1>
+<div class="proposal-strip" contenteditable="true">
+<b>Proposta técnico-comercial para Marinha do Brasil / DGN</b>
+<br/></div>
+<div class="small-note premium-intro" contenteditable="true">Proposta técnico-comercial estruturada por pacotes hospitalares, codificações TUSS/procedimentais, valores propostos e observações técnicas.</div>
+<div class="small-note editor-help" contenteditable="true">
+<ul>
+<li><b>Editor de tabelas:</b> clique dentro de qualquer célula da linha. A linha ficará amarela. Depois clique em “− Remover linha selecionada”. Se nenhuma linha estiver selecionada, o sistema vai pedir para selecionar primeiro. Os controles não aparecem na impressão/PDF.</li>
+</ul>
+</div>
+<p contenteditable="true"><br/></p><div class="field-grid"><div class="field" contenteditable="true">Prestador: HOSPITAL SANTA HELENA</div><div class="field" contenteditable="true">Destinatário: MARINHA DO BRASIL / DGN</div><div class="field" contenteditable="true">Data da proposta: <span class="todo" contenteditable="true" data-campo="Data da proposta" data-placeholder="[informar data]" spellcheck="false">03/06/2026</span></div><div class="field" contenteditable="true">Validade da proposta: <span class="todo" contenteditable="true" data-campo="Validade da proposta" data-placeholder="[informar validade]" spellcheck="false">30 dias</span></div><div class="field" contenteditable="true">Contato comercial: <a href="tel:+552231991010">(22) 3199-1010</a></div><div class="field" contenteditable="true">Responsável técnico:Dr. Marcos Antonio Pereira dos Santos <div>CRM: 408274</div></div></div><div class="small-note"><ul><li contenteditable="true">Documento preparado para conferência e envio institucional.</li><li contenteditable="true">Códigos internos de convênios foram removidos da proposta.</li><li contenteditable="true">Valores sujeitos à validação final e formalização entre as partes.</li><li contenteditable="true">Códigos internos do convênio iniciados por 8 foram removidos; permanecem apenas descrições, codificações TUSS/procedimentais pertinentes e valores.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Condições comerciais</h2><div class="small-note"><ul><li contenteditable="true">Forma e prazo de pagamento: <span class="todo" contenteditable="true" data-campo="Forma e prazo de pagamento" data-placeholder="[informar forma e prazo]" spellcheck="false"></span> (ex.: faturamento mensal, pagamento em XX dias após a apresentação da fatura).</li><li contenteditable="true">Reajuste: anual, na data-base do contrato, pelo índice <span class="todo" contenteditable="true" data-campo="Índice de reajuste" data-placeholder="[informar índice]" spellcheck="false"></span> (ex.: IPCA / VCMH), ou conforme acordado entre as partes.</li><li contenteditable="true">Tributos: os valores propostos <span class="todo" contenteditable="true" data-campo="Tributos (incluem/não incluem)" data-placeholder="[indicar: incluem / não incluem]" spellcheck="false"></span> os tributos incidentes, conforme legislação aplicável.</li><li contenteditable="true">Os valores e condições estão sujeitos à validação final entre as partes e posterior formalização contratual.</li><li contenteditable="true">A forma de cobrança respeitará as condições vigentes na data de realização do evento assistencial.</li></ul></div><h2 class="group-title" contenteditable="true">Sumário do anexo técnico</h2><div class="toc"><b>Grupos de procedimentos</b><ol><li>Aparelho Digestivo</li><li>Cirurgia Bariátrica</li><li>Ginecologia</li><li>Hemodinâmica</li><li>Parto</li><li>Urologia</li><li>Varizes</li><li>Endoscopia Digestiva</li><li>Pronto Socorro</li><li>Hemoterapia</li><li>Diária Global e Taxas Cirúrgicas por Porte</li><li>Tabelas Padrão de Mercado e Critérios de Remuneração</li><li>Indicadores de acompanhamento</li></ol></div></section>
+<section class="page contract-clauses-section">
+<h2 class="group-title" contenteditable="true">Minuta Contratual — Condições Gerais</h2>
+<div class="contract-grid">
+<div class="contract-clause" contenteditable="true">
+<b>1. Objeto</b>
+<p>O presente instrumento tem por objeto estabelecer condições comerciais, técnicas e operacionais para prestação de serviços hospitalares, por meio de pacotes, tabelas referenciais, diárias, taxas e demais critérios de remuneração definidos nesta proposta.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>2. Abrangência Assistencial</b>
+<p>Os serviços abrangem os grupos de procedimentos e especialidades descritos no anexo técnico-comercial, observadas as regras de autorização, elegibilidade, cobertura e auditoria aplicáveis.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>3. Autorização e Elegibilidade</b>
+<p>A realização dos procedimentos estará condicionada à autorização prévia quando exigida, validação de elegibilidade do beneficiário e emissão de senha/autorização pelo convênio ou órgão responsável.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>4. Composição dos Pacotes</b>
+<p>Os pacotes contemplam exclusivamente os itens descritos em cada grupo de procedimentos. Itens não contemplados, excluídos ou sujeitos a autorização específica serão cobrados conforme tabelas referenciais ou regras próprias acordadas.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>5. Exclusões e Itens Não Contemplados</b>
+<p>Honorários médicos, OPME, medicamentos de alto custo, hemoterapia, anatomia patológica, remoções, terapias especiais e demais itens excluídos deverão observar as regras descritas nas notas técnicas e tabelas padrão de mercado.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>6. Faturamento e Pagamento</b>
+<p>O faturamento será realizado conforme cronograma operacional acordado entre as partes. O prazo de pagamento, forma de envio das contas, documentação obrigatória e regras de glosa deverão ser formalizados na versão final do contrato.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>7. Reajuste</b>
+<p>Os valores serão reajustados anualmente, ou em periodicidade acordada entre as partes, mediante índice definido em contrato ou negociação específica.</p>
+</div>
+<div class="contract-clause" contenteditable="true">
+<b>8. Vigência</b>
+<p>A vigência da proposta será de acordo com o prazo indicado no cabeçalho comercial, com início contratual condicionado à aprovação e formalização entre as partes.</p>
+</div>
+</div>
+</section>
+<section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Aparelho Digestivo</h2><p class="muted" contenteditable="true">Pacotes cirúrgicos</p>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">COLECISTECTOMIA COM OU SEM COLANGIOGRAFIA - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31005470 COLECISTECTOMIA COM COLANGIOGRAFIA POR VIDEOLAPAROSCOPIA</div><div>31005497 COLECISTECTOMIA SEM COLANGIOGRAFIA POR VIDEOLAPAROSCOPIA</div><div>31005101 COLECISTECTOMIA COM COLANGIOGRAFIA</div><div>31005128 COLECISTECTOMIA SEM COLANGIOGRAFIA</div><div>31009050 DIASTASE DOS RETOS-ABDOMINAIS - TRATAMENTO CIRÚRGICO</div><div>31009166 HERNIORRAFIA UMBILICAL</div></td><td class="value" contenteditable="true">R$ 6.807,72</td></tr><tr><td class="desc" contenteditable="true">APENDICECTOMIA - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31003583 APENDICECTOMIA POR VIDEOLAPAROSCOPIA</div><div>31003079 APENDICECTOMIA</div><div>31009050 DIASTASE DOS RETOS-ABDOMINAIS - TRATAMENTO CIRÚRGICO</div><div>31009166 HERNIORRAFIA UMBILICAL</div><div>31009352 LAPAROTOMIA EXPLORADORA POR VIDEOLAPAROSCOPIA</div><div>31009174 LAPAROTOMIA EXPLORADORA</div></td><td class="value" contenteditable="true">R$ 9.042,46</td></tr><tr><td class="desc" contenteditable="true">HEMORROIDECTOMIA OU FISTULECTOMIA - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31004202 HEMORROIDECTOMIA ABERTA OU FECHADA, COM OU SEM ESFINCTEROTOMIA</div><div>31004121 FISTULECTOMIA ANAL EM DOIS TEMPOS</div><div>31004148 FISTULECTOMIA ANAL EM UM TEMPO</div><div>31004130 FISTULECTOMIA ANAL EM FERRADURA</div><div>31004156 FISTULECTOMIA ANORRETAL COM ABAIXAMENTO MUCOSO</div><div>31004164 FISTULECTOMIA PERINEAL</div><div>31004270 RECONSTITUIÇÃO DE ESFINCTER ANAL</div><div>31004318 TROMBOSE HEMORROIDÁRIA - EXERESE</div><div>31004091 EXCISÃO DE PLICOMA</div></td><td class="value" contenteditable="true">R$ 2.735,06</td></tr><tr><td class="desc" contenteditable="true">FISSURECTOMIA COM OU SEM ESFINCTEROTOMIA - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31004105 FISSURECTOMIA COM OU SEM ESFINCTEROTOMIA</div><div>31004075 ESFINCTEROPLASTIA ANAL</div><div>31004334 ESFINCTEROTOMIA – ANUS</div><div>31004210 LACERAÇÃO ANORRETAL - TRATAMENTO CIRÚRGICO POR VIA PERINEAL</div></td><td class="value" contenteditable="true">R$ 1.961,18</td></tr><tr><td class="desc" contenteditable="true">RETOSSIGMOIDECTOMIA - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31003796 RETOSSIGMOIDECTOMIA ABDOMINAL POR VIDEOLAPAROSCOPIA</div><div>30914078 LINFADENECTOMIA RETROPERITONEAL</div><div>30914159 LINFADENECTOMIA RETROPERITONEAL LAPAROSCÓPICA</div><div>31003559 RETOSSIGMOIDECTOMIA ABDOMINAL</div><div>31003133 CIRURGIA DE ABAIXAMENTO</div></td><td class="value" contenteditable="true">R$ 27.996,11</td></tr><tr><td class="desc" contenteditable="true">HÉRNIA EPIGÁSTRICA COM OU SEM HÉRNIA UMBILICAL - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31009093 HERNIORRAFIA EPIGÁSTRICA</div><div>31009166 HERNIORRAFIA UMBILICAL</div><div>31009050 DIASTASE DOS RETOS-ABDOMINAIS - TRATAMENTO CIRÚRGICO</div></td><td class="value" contenteditable="true">R$ 4.131,20</td></tr><tr><td class="desc" contenteditable="true">HÉRNIA INGUINAL COM OU SEM HÉRNIA UMBILICAL (UNILATERAL OU BILATERAL) - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31009115 HERNIORRAFIA INGUINAL - UNILATERAL</div><div>31009336 HERNIORRAFIA INGUINAL - UNILATERAL POR VIDEOLAPAROSCOPIA</div><div>31009166 HERNIORRAFIA UMBILICAL</div><div>31009050 DIASTASE DOS RETOS-ABDOMINAIS - TRATAMENTO CIRÚRGICO</div><div>31009085 HERNIORRAFIA CRURAL - UNILATERAL</div><div>31009107 HERNIORRAFIA INCISIONAL</div><div>31009140 HERNIORRAFIA RECIDIVANTE</div><div>31009158 HERNIORRAFIA SEM RESSECÇÃO INTESTINAL ENCARCERADA</div><div>31009344 HERNIORRAFIA RECIDIVANTE POR VIDEOLAPAROSCOPIA</div></td><td class="value" contenteditable="true">R$ 4.905,12</td></tr><tr><td class="desc" contenteditable="true">HÉRNIA INGUINAL - PEDIATRIA/NEONATOLOGIA (UNILATERAL OU BILATERAL) - INDEPENDENTE DA TÉCNICA</td><td class="tuss" contenteditable="true"><div>31009069 HÉRNIA INGUINAL ENCARCERADA EM RN OU LACTENTE - TRATAMENTO CIRÚRGICO</div><div>31009123 HERNIORRAFIA INGUINAL NO RN OU LACTENTE</div><div>31009360 HERNIORRAFIA INGUINAL EM CRIANÇA – UNILATERAL</div><div>31009050 DIASTASE DOS RETOS-ABDOMINAIS - TRATAMENTO CIRÚRGICO</div><div>31009166 HERNIORRAFIA UMBILICAL</div></td><td class="value" contenteditable="true">R$ 4.905,12</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Os valores contemplam despesas hospitalares necessárias à realização dos eventos, inclusive acompanhante.</li><li contenteditable="true">Não estão previstos honorários médicos cirúrgicos, anestesiologista, hemoterapia e anatomia patológica.</li><li contenteditable="true">O OPME está incluso no procedimento padronizado.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Cirurgia Bariátrica</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">CIRURGIA BARIÁTRICA - QUALQUER TÉCNICA</td><td class="tuss" contenteditable="true"><div>31001076 ESOFAGOPLASTIA (GASTROPLASTIA)</div><div>31001360 TRATAMENTO CIRÚRGICO DO REFLUXO / HÉRNIA DE HIATO POR VIDEOLAPAROSCOPIA</div><div>31002013 COLOCAÇÃO DE BANDA GÁSTRICA</div><div>31002021 CONVERSÃO DE ANASTOMOSE GASTROJEJUNAL</div><div>31002030 DEGASTROGASTRECTOMIA COM VAGOTOMIA</div><div>31002048 DEGASTROGASTRECTOMIA SEM VAGOTOMIA</div><div>31002072 GASTRECTOMIA PARCIAL COM VAGOTOMIA</div><div>31002080 GASTRECTOMIA PARCIAL SEM VAGOTOMIA</div><div>31002137 GASTROENTEROANASTOMOSE</div><div>31002145 GASTRORRAFIA</div><div>31002218 GASTROPLASTIA PARA OBESIDADE MÓRBIDA - QUALQUER TÉCNICA</div><div>31002285 COLOCAÇÃO DE BANDA GÁSTRICA POR VIDEOLAPAROSCOPIA</div><div>31002390 GASTROPLASTIA PARA OBESIDADE MÓRBIDA POR VIDEOLAPAROSCOPIA</div><div>31003281 ENTERECTOMIA SEGMENTAR</div><div>31003290 ENTERO-ANASTOMOSE</div><div>31003320 ENTEROTOMIA E/OU ENTERORRAFIA</div><div>31005675 BIÓPSIA HEPÁTICA POR VIDEOLAPAROSCOPIA</div></td><td class="value" contenteditable="true">R$ 24.413,88</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Os valores descritos contemplam todas as despesas hospitalares necessárias à realização dos eventos, inclusive as despesas com acompanhante, não
+estando previstos os Honorários Médicos Cirúrgicos, Anestesiologista, Hemoterapia  e Anatomia Patológica.
+O OPME está incluso no procedimento padronizado, independente do OPME utilizado na cirurgia.
+Os valores dos procedimentos padronizados independem da técnica utilizada.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Ginecologia</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">CURETAGEM SEMIÓTICA OU PÓS-ABORTAMENTO COM OU SEM MATURAÇÃO</td><td class="tuss" contenteditable="true"><div>31303013 ASPIRAÇÃO MANUAL INTRA-UTERINA AMIU</div><div>31303064 DILATAÇÃO DO COLO UTERINO</div><div>31309020 ASPIRAÇÃO MANUAL INTRA-UTERINA (AMIU) PÓS-ABORTAMENTO</div><div>31309062 CURETAGEM PÓS-ABORTAMENTO</div><div>31309097 MATURAÇÃO CERVICAL PARA INDUÇÃO DE ABORTAMENTO OU DE TRABALHO DE PARTO</div><div>31303056 CURETAGEM GINECOLÓGICA SEMIÓTICA E/OU TERAPÊUTICA</div></td><td class="value" contenteditable="true">R$ 1.927,55</td></tr><tr><td class="desc" contenteditable="true">HISTEROSCOPIA COM RESSECTOSCÓPIO</td><td class="tuss" contenteditable="true"><div>31303170 HISTEROSCOPIA CIRÚRGICA COM BIÓPSIA E/OU CURETAGEM, LISE DE SINEQUIAS, RETIRADA DE CORPO ESTRANHO</div><div>31303188 HISTEROSCOPIA COM RESSECTOSCÓPIO PARA POLIPECTOMIA, METROPLASTIA, ENDOMETRECTOMIA E RESSECÇÃO DE SINEQUIAS</div><div>31303366 HISTEROSCOPIA COM RESSECTOSCÓPIO PARA MIOMECTOMIA</div><div>40201155 HISTEROSCOPIA DIAGNÓSTICA COM BIÓPSIA</div></td><td class="value" contenteditable="true">R$ 3.973,36</td></tr><tr><td class="desc" contenteditable="true">HISTERECTOMIA COM OU SEM ANEXECTOMIA, TÉCNICA CONVENCIONAL OU LAPAROSCÓPICA (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>31303080 HISTERECTOMIA SUBTOTAL COM OU SEM ANEXECTOMIA, UNI OU BILATERAL - QUALQUER VIA</div><div>31303102 HISTERECTOMIA TOTAL (QUALQUER VIA)</div><div>31303110 HISTERECTOMIA TOTAL AMPLIADA - QUALQUER VIA</div><div>31303129 HISTERECTOMIA TOTAL COM ANEXECTOMIA UNI OU BILATERAL</div><div>31303200 HISTERECTOMIA SUBTOTAL LAPAROSCÓPICA COM OU SEM ANEXECTOMIA</div><div>31303218 HISTERECTOMIA TOTAL LAPAROSCÓPICA</div><div>31303226 HISTERECTOMIA TOTAL LAPAROSCÓPICA AMPLIADA</div><div>31303234 HISTERECTOMIA TOTAL LAPAROSCÓPICA COM ANEXECTOMIA UNI OU BILATERAL</div><div>31303285 HISTERECTOMIA PUERPERAL</div><div>31304044 SALPINGECTOMIA UNI OU BILATERAL</div><div>31304087 SALPINGECTOMIA UNI OU BILATERAL LAPAROSCÓPICA</div></td><td class="value" contenteditable="true">R$ 8.452,08</td></tr><tr><td class="desc" contenteditable="true">OOFORECTOMIA TÉCNICA CONVENCIONAL OU LAPAROSCÓPICA (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>31305016 OOFORECTOMIA UNI OU BILATERAL OU OOFOROPLASTIA UNI OU BILATERAL</div><div>31305032 OOFORECTOMIA LAPAROSCÓPICA UNI OU BILATERAL OU OOFOROPLASTIA UNI OU BILATERAL</div></td><td class="value" contenteditable="true">R$ 7.723,24</td></tr><tr><td class="desc" contenteditable="true">IMPLANTE DE DIU (HORMONAL OU NÃO HORMONAL) COM OU SEM HISTEROSCOPIA CIRÚRGICA</td><td class="tuss" contenteditable="true"><div>31303269 IMPLANTE DE DISPOSITIVO INTRA-UTERINO (DIU) NÃO HORMONAL</div><div>31303293 IMPLANTE DE DISPOSITIVO INTRA-UTERINO DIU HORMONAL</div></td><td class="value" contenteditable="true"><span class="todo" contenteditable="true" data-campo="Valor — Implante de DIU (Ginecologia)" data-placeholder="[informar valor]" spellcheck="false">R$ 2.800,00</span></td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Os valores contemplam despesas hospitalares, acompanhante e OPME.</li><li contenteditable="true">Não contemplam honorários médicos, anestesiologista, hemoterapia e anatomia patológica.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Hemodinâmica</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">ANGIOPLASTIA CORONARIANA COM OU SEM IMPLANTE DE STENTS FARMACOLÓGICOS OU CONVENCIONAIS (TODOS OS REGIMES DE ATENDIMENTO)</td><td class="tuss" contenteditable="true"><div>30912032 ANGIOPLASTIA TRANSLUMINAL PERCUTÂNEA DE MÚLTIPLOS VASOS, COM IMPLANTE DE STENT</div><div>30912040 ANGIOPLASTIA TRANSLUMINAL PERCUTÂNEA POR BALÃO (1 VASO)</div><div>30912105 IMPLANTE DE STENT CORONÁRIO COM OU SEM ANGIOPLASTIA POR BALÃO CONCOMITANTE</div><div>30912180 RECANALIZAÇÃO ARTERIAL NO IAM - ANGIOPLASTIA PRIMÁRIA</div><div>30912261 ANGIOPLASTIA TRANSLUMINAL PERCUTÂNEA DE BIFURCAÇÃO E DE TRONCO COM IMPLANTE DE STENT</div><div>30906113 ANGIOPLASTIA TRANSLUMINAL TRANSOPERATÓRIA - POR ARTÉRIA</div></td><td class="value" contenteditable="true">R$ 24.940,00</td></tr><tr><td class="desc" contenteditable="true">CATETERISMO CARDÍACO POR QUALQUER VIA (TODOS OS REGIMES DE ATENDIMENTO)</td><td class="tuss" contenteditable="true"><div>30911079 CATETERISMO CARDÍACO E E/OU D COM CINEANGIOCORONARIOGRAFIA E VENTRICULOGRAFIA</div><div>30911052 CATETERISMO CARDÍACO D E/OU E COM ESTUDO CINEANGIOGRÁFICO E DE REVASCULARIZAÇÃO CIRÚRGICA DO MIOCÁRDIO</div></td><td class="value" contenteditable="true">R$ 3.400,00</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Os valores são aplicados independentemente da técnica, contemplando 2 diarias 1 Stent farmacológico até R$2.500,00 seja em caráter emergencial ou eletivo, <div>EXCLUI: Honorários médicos da equipe de hemodinâmica, Honorário Anestesia, Medicamentos de alto custo (Agrastat, Actylise, Metalyse, Reopro , Bridion e 
+o Angioseal),  Reopro e Agrastat, Balão Intraórtico, Cateter de Ultrassom Intracoronário</div></li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Parto</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">PARTO NORMAL</td><td class="tuss" contenteditable="true"><div>31306047 PERINEORRAFIA (NÃO OBSTÉTRICA) E/OU EPISIOTOMIA E/OU EPISIORRAFIA</div><div>31309038 ASSISTÊNCIA AO TRABALHO DE PARTO, POR HORA (ATÉ O LIMITE DE 6 HORAS)</div><div>31309097 MATURAÇÃO CERVICAL PARA INDUÇÃO DE ABORTAMENTO OU DE TRABALHO DE PARTO</div><div>31309127 PARTO VIA VAGINAL</div></td><td class="value" contenteditable="true">R$ 6.100,00</td></tr><tr><td class="desc" contenteditable="true">PARTO CESARIANA COM OU SEM LAQUEADURA</td><td class="tuss" contenteditable="true"><div>31309054 CESARIANA</div><div>31304010 CIRURGIA DE ESTERILIZAÇÃO FEMININA / LAQUEADURA TUBÁRICA CONVENCIONAL</div><div>31304044 SALPINGECTOMIA UNI OU BILATERAL</div></td><td class="value" contenteditable="true">R$ 6.100,00</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Contempla, para mãe e recém-nascido: diárias, taxas, gases, materiais, medicamentos, exames laboratoriais e de imagem.</li><li contenteditable="true">Inclui para o RN: fototerapia, testes da orelhinha, olhinho, coraçãozinho, linguinha, mapeamento de retina, ecocardiograma e outros exames cardiológicos/otorrinolaringológicos descritos no contrato-base.</li><li contenteditable="true">Não contempla: UTI adulto e neonatal, teste do pezinho, medicina transfusional, anatomia patológica, albumina, imunobiológicos, imunoglobulinas, vacina VSR, honorários médicos e anestesiologista.</li><li contenteditable="true">Gestações múltiplas: acréscimo de 20% ao valor do procedimento padronizado por cada gemelar.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Urologia</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">URETERORRENOLITOTRIPSIA RÍGIDA OU FLEXÍVEL, COM OU SEM LASER, COM OU SEM COLOCAÇÃO DE DUPLO J (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>31102042 COLOCAÇÃO CIRÚRGICA DE DUPLO J UNILATERAL</div><div>31102050 COLOCAÇÃO CISTOSCÓPICA DE DUPLO J UNILATERAL</div><div>31102069 COLOCAÇÃO NEFROSCÓPICA DE DUPLO J UNILATERAL</div><div>31102077 COLOCAÇÃO URETEROSCÓPICA DE DUPLO J - UNILATERAL</div><div>31102085 DILATAÇÃO ENDOSCÓPICA UNILATERAL</div><div>31102131 MEATOTOMIA ENDOSCÓPICA UNILATERAL</div><div>31102220 RETIRADA ENDOSCÓPICA DE CÁLCULO DE URETER - UNILATERAL</div><div>31102301 URETEROLITOTOMIA UNILATERAL</div><div>31102352 URETERORRENOLITOTOMIA UNILATERAL</div><div>31102360 URETERORRENOLITOTRIPSIA FLEXÍVEL A LASER UNILATERAL</div><div>31102379 URETERORRENOLITOTRIPSIA RÍGIDA UNILATERAL</div><div>31102441 URETEROTOMIA INTERNA URETEROSCÓPICA FLEXÍVEL UNILATERAL</div><div>31102450 URETEROTOMIA INTERNA URETEROSCÓPICA RÍGIDA UNILATERAL</div><div>31102565 URETERORRENOLITOTRIPSIA RÍGIDA UNILATERAL A LASER</div></td><td class="value" contenteditable="true">R$ 10.563,70</td></tr><tr><td class="desc" contenteditable="true">RETIRADA ENDOSCÓPICA DE DUPLO J (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>31103472 RETIRADA ENDOSCÓPICA DE DUPLO J</div></td><td class="value" contenteditable="true">R$ 1.825,87</td></tr><tr><td class="desc" contenteditable="true">POSTECTOMIA</td><td class="tuss" contenteditable="true"><div>31206212 PLÁSTICA DO FREIO BALANO-PREPUCIAL</div><div>31206182 PÊNIS CURVO CONGÊNITO - TRATAMENTO CIRÚRGICO</div><div>31206220 POSTECTOMIA</div></td><td class="value" contenteditable="true">R$ 1.760,62</td></tr><tr><td class="desc" contenteditable="true">VASECTOMIA (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>31205011 ESPERMATOCELECTOMIA UNILATERAL</div><div>31205020 EXPLORAÇÃO CIRÚRGICA DO DEFERENTE UNILATERAL</div><div>31205046 VASECTOMIA UNILATERAL</div><div>31203132 ORQUIDOPEXIA LAPAROSCÓPICA UNILATERAL</div><div>31203060 ORQUIDOPEXIA UNILATERAL</div><div>31204058 EPIDIDIMOVASOPLASTIA UNILATERAL MICROCIRÚRGICA</div><div>31205070 CIRURGIA ESTERILIZADORA MASCULINA</div></td><td class="value" contenteditable="true">R$ 1.643,24</td></tr><tr><td class="desc" contenteditable="true">VARICOCELE (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>31204066 EXERESE DE CISTO UNILATERAL</div><div>31205020 EXPLORAÇÃO CIRÚRGICA DO DEFERENTE UNILATERAL</div><div>31203060 ORQUIDOPEXIA UNILATERAL</div><div>31203124 VARICOCELE UNILATERAL – CORREÇÃO CIRÚRGICA</div></td><td class="value" contenteditable="true">R$ 1.877,99</td></tr><tr><td class="desc" contenteditable="true">RESSECÇÃO ENDOSCÓPICA DA PRÓSTATA</td><td class="tuss" contenteditable="true"><div>31103219 COLO VESICAL - RESSECÇÃO ENDOSCÓPICA</div><div>31104207 URETROPLASTIA POSTERIOR</div><div>31201130 RESSECÇÃO ENDOSCÓPICA DA PRÓSTATA</div></td><td class="value" contenteditable="true">R$ 5.281,85</td></tr><tr><td class="desc" contenteditable="true">INCONTINÊNCIA URINÁRIA – SLING VAGINAL OU ABDOMINAL</td><td class="tuss" contenteditable="true"><div>31103332 INCONTINÊNCIA URINÁRIA – SLING VAGINAL OU ABDOMINAL</div><div>31302050 COLPOPLASTIA POSTERIOR COM PERINEORRAFIA</div><div>31302041 COLPOPLASTIA ANTERIOR</div><div>31103375 INCONTINÊNCIA URINÁRIA COM COLPOPLASTIA ANTERIOR - TRATAMENTO CIRÚRGICO</div><div>31306012 CORREÇÃO DE DEFEITO LATERAL</div><div>31306039 CORREÇÃO DE ROTURA PERINEAL DE III GRAU</div></td><td class="value" contenteditable="true">R$ 5.633,97</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Os valores contemplam despesas hospitalares, acompanhante e OPME.</li><li contenteditable="true">Não estão previstos honorários médicos cirúrgicos, anestesiologista, hemoterapia e anatomia patológica.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Varizes</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">VARIZES - TRATAMENTO CIRÚRGICO (UNILATERAL OU BILATERAL)</td><td class="tuss" contenteditable="true"><div>30907020 CIRURGIA DE RESTAURAÇÃO VENOSA COM PONTES NOS MEMBROS</div><div>30907136 VARIZES - TRATAMENTO CIRÚRGICO DE DOIS MEMBROS</div><div>30907144 VARIZES - TRATAMENTO CIRÚRGICO DE UM MEMBRO</div><div>30907071 FULGURAÇÃO DE TELANGIECTASIAS (POR GRUPO)</div></td><td class="value" contenteditable="true">R$ 3.644,96</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Técnicas por vídeo, espuma, radiofrequência ou laser não estão contempladas no procedimento padronizado.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Endoscopia Digestiva</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">ENDOSCOPIA DIGESTIVA ALTA COM OU SEM BIÓPSIA, COM OU SEM TESTE DE UREASE</td><td class="tuss" contenteditable="true"><div>40201120 ENDOSCOPIA DIGESTIVA ALTA</div><div>40202038 ENDOSCOPIA DIGESTIVA ALTA COM BIÓPSIA E/OU CITOLOGIA</div><div>40202615 ENDOSCOPIA DIGESTIVA ALTA COM BIÓPSIA E TESTE DE UREASE (PESQUISA HELICOBACTER PYLORI)</div></td><td class="value" contenteditable="true">R$ 756,00</td></tr><tr><td class="desc" contenteditable="true">ENDOSCOPIA DIGESTIVA ALTA COM OU SEM BIÓPSIA, COM OU SEM TESTE DE UREASE, COM POLIPECTOMIA, INDEPENDENTE DO NÚMERO DE PÓLIPOS</td><td class="tuss" contenteditable="true"><div>40201120 ENDOSCOPIA DIGESTIVA ALTA</div><div>40202038 ENDOSCOPIA DIGESTIVA ALTA COM BIÓPSIA E/OU CITOLOGIA</div><div>40202550 POLIPECTOMIA DO ESÔFAGO, ESTÔMAGO OU DUODENO INDEPENDENTE DO NÚMERO DE PÓLIPOS</div><div>40202615 ENDOSCOPIA DIGESTIVA ALTA COM BIÓPSIA E TESTE DE UREASE (PESQUISA HELICOBACTER PYLORI)</div></td><td class="value" contenteditable="true">R$ 1054,72</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">O valor do procedimento padronizado contempla honorário médico do exame, materiais e medicamentos e demais despesas inerentes à realização do procedimento.</li><li contenteditable="true">Não estão incluídos honorário do anestesista e anatomia patológica.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Pronto Socorro</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">ATENDIMENTO EM PRONTO SOCORRO ADULTO</td><td class="tuss" contenteditable="true"><div>Contempla: honorários médicos, inclusive especialista e adicional em urgência; exames; procedimentos realizados no pronto socorro; taxas e aluguéis; materiais; medicamentos; gasoterapia/nebulizações.</div></td><td class="value" contenteditable="true">R$ 455,00</td></tr><tr><td class="desc" contenteditable="true">ATENDIMENTO EM PRONTO SOCORRO PEDIÁTRICO</td><td class="tuss" contenteditable="true"><div>Contempla: honorários médicos, inclusive especialista e adicional em urgência; exames; procedimentos realizados no pronto socorro; taxas e aluguéis; materiais; medicamentos; gasoterapia/nebulizações.</div></td><td class="value" contenteditable="true">R$ 455,00</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">ITENS INCLUSOS NOS PACOTES DE PRONTO SOCORRO: Atendimento de Enfermagem: Triagem, mensuração de sinais vitais e oximetria transcutânea, 
+Atendimento Médico: Anamnese, exame físico e orientação diagnóstico / terapêutica, Procedimentos de Enfermagem: Tricotomia, acesso(s) venoso(s) 
+periférico, preparo e administração oral e parenteral de medicamentos, coleta de espécimes biológicos, repouso e observação até 6 horas. Consulta Médica; 
+Taxas de Serviços Hospitalares - TSH;  Taxas de Utilização de Equipamentos - TUE; Gases Materiais e Medicamentos de uso comum; Pequenos 
+procedimentos cirúrgicos e curativos, Imobilizações,  Adicional de urgência, Exames de Imagem, RX E USG, Ecocardiograma, Doppler; Exames Laboratoriais 
+e outros, exceto exames não constantes na exclusão, Retorno em 24h com mesmo CID.</li><li contenteditable="true">ITENS EXCLUSOS NOS PACOTES DE PRONTO SOCORRO:  Ressonância magnética, Tomografia computadorizada, Contrastes, Sangue e 
+Hemoderivados, Diálise e Hemodiálise e Remoção</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Procedimentos Padronizados – Hemoterapia</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de pacotes</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="package-table"><colgroup><col style="width:48%"/><col style="width:39%"/><col style="width:13%"/></colgroup><thead><tr><th contenteditable="true" scope="col">Descrição do Pacote</th><th contenteditable="true" scope="col">Codificação TUSS / Procedimental</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td class="desc" contenteditable="true">CONCENTRADO DE PLAQUETAS</td><td class="tuss" contenteditable="true"><div>TUSS principal 40402061</div></td><td class="value" contenteditable="true">R$ 1108,06</td></tr><tr><td class="desc" contenteditable="true">CONCENTRADO DE HEMÁCIAS</td><td class="tuss" contenteditable="true"><div>TUSS principal 40402045</div></td><td class="value" contenteditable="true">R$ <span style="font-size: 10.7px;">1108,06</span></td></tr><tr><td class="desc" contenteditable="true">CONCENTRADO DE PLASMA FRESCO</td><td class="tuss" contenteditable="true"><div>TUSS principal 40402096</div></td><td class="value" contenteditable="true">R$ <span style="font-size: 10.7px;">1108,06</span></td></tr><tr><td class="desc" contenteditable="true">CRIOPRECIPITADO</td><td class="tuss" contenteditable="true"><div>TUSS principal 40402088</div></td><td class="value" contenteditable="true">R$ <span style="font-size: 10.7px;">1108,06</span></td></tr><tr><td class="desc" contenteditable="true">CONCENTRADO DE PLAQUETAS POR AFÉRESE</td><td class="tuss" contenteditable="true"><div>TUSS principal 40402061</div></td><td class="value" contenteditable="true">R$ <span style="font-size: 10.7px;">1108,06</span></td></tr><tr><td class="desc" contenteditable="true">SANGUE TOTAL</td><td class="tuss" contenteditable="true"><div>TUSS principal 40402100</div></td><td class="value" contenteditable="true">R$ <span style="font-size: 10.7px;">1108,06</span></td></tr><tr><td class="desc" contenteditable="true">PLASMAFERESE</td><td class="tuss" contenteditable="true"><div>(*) / TUSS principal 30909147 * 30909139</div></td><td class="value" contenteditable="true">R$ 23<span style="font-size: 10.7px;">08,06</span></td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">O procedimento (PLASMAFERESE) somente poderá ser realizado em paciente internado e faturado utilizando a senha liberada para o hospital.</li></ul></div></section><section class="page"><h2 class="group-title" contenteditable="true">Diária Global e Taxas Cirúrgicas por Porte</h2>
+<div class="table-actions" contenteditable="false">
+<span>Tabela de diárias / taxas</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="info-table"><thead><tr><th contenteditable="true" scope="col">Descrição</th><th contenteditable="true" scope="col">Valor</th></tr></thead><tbody><tr><td contenteditable="true">DIÁRIA GLOBAL ENFERMARIA (INTERNAÇÃO CLÍNICA OU CIRÚRGICA)</td><td contenteditable="true">R$ 1.500,00 
+</td></tr><tr><td contenteditable="true">DIÁRIA GLOBAL QUARTO (INTERNAÇÃO CLÍNICA OU CIRÚRGICA)</td><td contenteditable="true">R$  1.750,00 </td></tr><tr><td contenteditable="true">DIÁRIA GLOBAL DAY CLINIC (INTERNAÇÃO CLÍNICA OU CIRÚRGICA)</td><td contenteditable="true">R$ 1.182,54</td></tr><tr><td contenteditable="true">DIÁRIA UTI / SEMI (ADULTO, PEDIÁTRICA E NEONATAL)</td><td contenteditable="true">R$ 4.700,00 </td></tr><tr><td contenteditable="true"><br/></td><td contenteditable="true"><br/></td></tr><tr><td contenteditable="true"><br/></td><td contenteditable="true"><br/></td></tr><tr><td contenteditable="true"><br/></td><td contenteditable="true"><br/></td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 1</td><td contenteditable="true">R$ 1.520,22</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 2</td><td contenteditable="true">R$ 2.482,92</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 3</td><td contenteditable="true">R$ 4.034,75</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 4</td><td contenteditable="true">R$ 4.345,11</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 5</td><td contenteditable="true">R$ 4.655,48</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 6</td><td contenteditable="true">R$ 5.214,13</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 7</td><td contenteditable="true">R$ 5.648,64</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 8</td><td contenteditable="true">R$ 6.083,15</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 1 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 760,11</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 2 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 1.241,46</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 3 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 2.017,38</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 4 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 2.172,56</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 5 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 2.327,74</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 6 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 2.607,07</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 7 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 2.824,32</td></tr><tr><td contenteditable="true">TAXA CIRÚRGICA POR PORTE 8 (REOPERAÇÃO - 50%)</td><td contenteditable="true">R$ 3.041,58</td></tr></tbody></table><div class="small-note"><ul><li contenteditable="true">Estão contemplados nas diárias globais e taxas cirúrgicas por porte: diárias, day clinic (inclusive isolamento), taxas, materiais, medicamentos, dietas, enfermagem, terapias, gases, exames com ou sem contraste e despesas com acompanhantes.</li><li contenteditable="true">Não estão contemplados: honorários médicos e anestesista, procedimentos padronizados, medicamentos listados na tabela própria de medicamentos excluídos, OPME, kit Prisma e TRIMA, anatomia patológica e remoção.</li><li contenteditable="true">Senhas com procedimentos padronizados cirúrgicos negociados previamente não comportam cobrança de taxas cirúrgicas por porte e diárias globais.</li></ul></div></section><section class="page">
+<div class="section-block market-tables">
+<h2 class="group-title" contenteditable="true">Tabelas Padrão de Mercado e Critérios de Remuneração</h2>
+<div class="small-note market-intro" contenteditable="true">
+    Esta seção permite registrar as tabelas referenciais adotadas para itens não contemplados nos pacotes fechados, para cobrança em conta aberta, itens excluídos, materiais, medicamentos, honorários e demais despesas assistenciais.
+  </div>
+<div class="table-actions" contenteditable="false">
+<span>Tabela padrão de mercado</span>
+<button onclick="addRow(this); return false;" type="button">+ Linha</button>
+<button onclick="removeSelectedRow(this); return false;" type="button">− Remover linha selecionada</button>
+<button onclick="duplicateTableBlock(this)" type="button">Duplicar tabela</button>
+<button onclick="removeTableBlock(this)" type="button">Remover tabela</button>
+</div>
+<table class="market-table">
+<thead>
+<tr>
+<th contenteditable="true" scope="col">Tabela / Referência</th>
+<th contenteditable="true" scope="col">Aplicação</th>
+<th contenteditable="true" scope="col">Critério Proposto</th>
+<th contenteditable="true" scope="col">Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td contenteditable="true"><b>CBHPM</b></td>
+<td contenteditable="true">Honorários médicos, procedimentos e exames quando não houver pacote negociado.</td>
+<td contenteditable="true">CBHPM 2014 • UCO <span class="todo" contenteditable="true" data-campo="CBHPM — valor da UCO" data-placeholder="[informar UCO]" spellcheck="false">R$ 12,89</span></td>
+<td contenteditable="true">Caso o Procedimento ou exame não conste na tabela contratada, seguiremos a regra de utilização do valor para a(s) edição(s) imediatamente 
+subsequente(s) sem necessidade de aditivo para o código prescrito.</td>
+</tr>
+<tr>
+<td contenteditable="true"><b>SIMPRO</b></td>
+<td contenteditable="true">Materiais hospitalares, descartáveis e insumos não incluídos em pacote.</td>
+<td contenteditable="true">SIMPRO vigente na data do atendimento, com  acréscimo de  <span class="todo" contenteditable="true" data-campo="SIMPRO — percentual" data-placeholder="[informar %]" spellcheck="false">15%</span>.</td>
+<td contenteditable="true"><br/></td>
+</tr>
+<tr>
+<td contenteditable="true"><b>BRASÍNDICE</b></td>
+<td contenteditable="true">Medicamentos, medicamentos restritos hospitalares e itens farmacológicos.</td>
+<td contenteditable="true">Brasíndice vigente PMC/PF +38,23%</td>
+<td contenteditable="true"><br/></td>
+</tr>
+<tr>
+<td contenteditable="true"><b>OPME</b></td>
+<td contenteditable="true">Órteses, próteses e materiais especiais não contemplados em pacote.</td>
+<td contenteditable="true">Conforme autorização prévia e cotação validada, com taxa administrativa de <span class="todo" contenteditable="true" data-campo="OPME — taxa administrativa" data-placeholder="[informar %]" spellcheck="false">15%</span></td>
+<td contenteditable="true"><br/></td>
+</tr>
+<tr>
+<td contenteditable="true"><b>TUSS / TISS</b></td>
+<td contenteditable="true">Padronização de codificação para autorização, faturamento e auditoria.</td>
+<td contenteditable="true">Utilização da codificação TUSS vigente e padrão TISS aplicável.</td>
+<td contenteditable="true"><br/></td>
+</tr>
+<tr>
+<td contenteditable="true"><b>Tabela própria de medicamentos excluídos</b></td>
+<td contenteditable="true">Medicamentos de alto custo ou expressamente excluídos dos pacotes.</td>
+<td contenteditable="true">Tabela própria negociada entre as partes, anexa à proposta.</td>
+<td contenteditable="true"><br/></td>
+</tr>
+</tbody>
+</table>
+<div class="add-area" contenteditable="true">
+<b>Campo para inclusão de novas tabelas/regras:</b><br/>
+    [Adicionar aqui outras referências: AMB, tabela própria de diárias, taxa de sala, gases, hemoterapia, taxa administrativa, índice de reajuste, regras de autorização, regras de exclusão etc.]
+  </div>
+</div>
+<h2 class="group-title" contenteditable="true">Indicadores de acompanhamento e observações complementares</h2><div class="small-note"><ul><li contenteditable="true">Acompanhamento do mix de cirurgias (especialidades, senhas e cirurgias realizadas) em conjunto com a análise do porte.</li><li contenteditable="true">Média de diárias por acomodação; quantidades de cirurgias realizadas em day clinic; quantidades de diárias UTI/SEMI; média de dias de internação por porte; conversão do PS em internações; retorno ao PS; reinternação.</li><li contenteditable="true">A remuneração dos medicamentos excluídos deve seguir tabela própria acordada.</li></ul></div><div class="place-date" contenteditable="true">Local e data: <span class="todo" contenteditable="true" data-campo="Cidade (local de emissão)" data-placeholder="[informar cidade]" spellcheck="false"></span>, <span class="todo" contenteditable="true" data-campo="Data de emissão" data-placeholder="[informar data]" spellcheck="false"></span>.</div><div class="signatures"><div class="sign-box"><div class="sign-line"></div><b contenteditable="true">HOSPITAL SANTA HELENA</b><span contenteditable="true">Responsável legal • <span class="todo" contenteditable="true" data-campo="Responsável legal — nome e cargo" data-placeholder="[informar nome e cargo]" spellcheck="false"></span></span></div><div class="sign-box"><div class="sign-line"></div><b contenteditable="true">Responsável Técnico</b><span contenteditable="true"><span class="todo" contenteditable="true" data-campo="Responsável técnico — nome" data-placeholder="[informar nome]" spellcheck="false"></span> • CRM <span class="todo" contenteditable="true" data-campo="Responsável técnico — CRM" data-placeholder="[informar CRM]" spellcheck="false"></span></span></div></div><div class="footer-note institutional" contenteditable="true">Proposta técnico-comercial • HOSPITAL SANTA HELENA • CNPJ 28.847.176/0001-00 • Cabo Frio / RJ • Documento confidencial destinado exclusivamente à Marinha do Brasil / DGN.</div></section>
+<section class="page signature-page">
+<h2 class="group-title" contenteditable="true">Assinaturas e Validação</h2>
+<div class="small-note" contenteditable="true">
+    As partes declaram ciência das condições comerciais, técnicas e operacionais descritas nesta proposta, sujeitas à validação final e formalização contratual.
+  </div>
+<div class="place-date" contenteditable="true">Cabo Frio/RJ, ____ de __________________ de ______.</div>
+<div class="signatures">
+<div class="sign-box" contenteditable="true">
+<div class="sign-line"></div>
+<b>Hospital Santa Helena</b>
+<span>Representante legal / responsável autorizado</span>
+</div>
+<div class="sign-box" contenteditable="true">
+<div class="sign-line"></div>
+<b>Convênio / Contratante</b>
+<span>Representante legal / responsável autorizado</span>
+</div>
+</div>
+<div class="footer-note institutional" contenteditable="true">
+    Documento técnico-comercial preparado para negociação institucional. A versão final deverá ser validada pelas áreas técnica, comercial e jurídica.
+  </div>
+</section>
+</main></div>
+<script>
+const DB_NAME = 'hsh_contratos_db_v12';
+const DB_VERSION = 1;
+const STORE_NAME = 'contratos';
+const CURRENT_KEY = 'hsh_contrato_atual_id_v12';
+const LEGACY_KEYS = ['hsh_contratos_padrao_v2','hsh_contratos_padrao_v1'];
+let selectedTableRow = null;
+let dbPromise = null;
+
+function uid(){
+  return 'ctr_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
+}
+function nowBR(){
+  return new Date().toLocaleString('pt-BR');
+}
+function escapeHtml(text){
+  return String(text || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[s]));
+}
+function slug(text){
+  return String(text || 'contrato').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'').toLowerCase() || 'contrato';
+}
+function baixarArquivo(filename, content, type){
+  const blob = new Blob([content], {type});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+}
+function indexedDbSupported(){
+  return !!window.indexedDB;
+}
+function openDB(){
+  if(dbPromise) return dbPromise;
+  dbPromise = new Promise((resolve, reject) => {
+    if(!indexedDbSupported()) return reject(new Error('IndexedDB não está disponível neste navegador.'));
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if(!db.objectStoreNames.contains(STORE_NAME)){
+        const store = db.createObjectStore(STORE_NAME, {keyPath:'id'});
+        store.createIndex('nome','nome',{unique:false});
+        store.createIndex('atualizadoEm','atualizadoEm',{unique:false});
+      }
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error || new Error('Erro ao abrir banco local.'));
+  });
+  return dbPromise;
+}
+async function dbGetAll(){
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readonly');
+    const store = tx.objectStore(STORE_NAME);
+    const req = store.getAll();
+    req.onsuccess = () => resolve((req.result || []).sort((a,b)=>String(b.atualizadoEmISO||b.atualizadoEm||'').localeCompare(String(a.atualizadoEmISO||a.atualizadoEm||''))));
+    req.onerror = () => reject(req.error);
+  });
+}
+async function dbGet(id){
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readonly');
+    const req = tx.objectStore(STORE_NAME).get(id);
+    req.onsuccess = () => resolve(req.result || null);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function dbPut(item){
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    tx.objectStore(STORE_NAME).put(item);
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function dbDelete(id){
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    tx.objectStore(STORE_NAME).delete(id);
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function dbBulkPut(items){
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    const store = tx.objectStore(STORE_NAME);
+    items.forEach(item => store.put(item));
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = () => reject(tx.error);
+  });
+}
+function getCurrentId(){
+  return localStorage.getItem(CURRENT_KEY) || '';
+}
+function setCurrentId(id){
+  try{
+    if(id) localStorage.setItem(CURRENT_KEY, id);
+    else localStorage.removeItem(CURRENT_KEY);
+  }catch(e){}
+  atualizarStatusContrato();
+}
+function normalizeContrato(c){
+  if(!c) return null;
+  if(c.docHtml) return c;
+  if(c.html){
+    try{
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(c.html, 'text/html');
+      const docEl = doc.querySelector('.doc');
+      c.docHtml = docEl ? docEl.innerHTML : '';
+      delete c.html;
+    }catch(e){
+      c.docHtml = '';
+    }
+  }
+  return c;
+}
+async function migrateLegacyLocalStorage(){
+  let migrated = 0;
+  for(const key of LEGACY_KEYS){
+    try{
+      const raw = localStorage.getItem(key);
+      if(!raw) continue;
+      const arr = JSON.parse(raw);
+      if(!Array.isArray(arr)) continue;
+      const normalized = arr.map(normalizeContrato).filter(c => c && c.id && c.nome && c.docHtml);
+      if(normalized.length){
+        await dbBulkPut(normalized);
+        migrated += normalized.length;
+      }
+      localStorage.removeItem(key);
+    }catch(e){
+      console.warn('Falha ao migrar', key, e);
+    }
+  }
+  return migrated;
+}
+function getCurrentDocHtml(){
+  const doc = document.querySelector('.doc');
+  if(!doc) return '';
+  const clone = doc.cloneNode(true);
+  clone.querySelectorAll('tr.selected-row').forEach(el => el.classList.remove('selected-row'));
+  return clone.innerHTML;
+}
+function applyDocHtml(docHtml){
+  const doc = document.querySelector('.doc');
+  if(!doc) return;
+  doc.innerHTML = docHtml || '';
+  selectedTableRow = null;
+}
+function setConvenioName(nome){
+  const fields = [...document.querySelectorAll('.field')];
+  const dest = fields.find(f => f.innerText.toLowerCase().includes('destinatário:'));
+  if(dest) dest.innerHTML = 'Destinatário: ' + nome;
+  const h1 = document.querySelector('.section-title');
+  if(h1) h1.textContent = 'PROPOSTA DE PACOTES HOSPITALARES – ' + nome.toUpperCase();
+  const strip = document.querySelector('.proposal-strip b');
+  if(strip) strip.textContent = 'Proposta técnico-comercial para ' + nome;
+}
+async function updateStorageStatus(){
+  const el = document.getElementById('storageDebugStatus');
+  if(!el) return;
+  if(!indexedDbSupported()){
+    el.textContent = 'Banco local indisponível';
+    el.classList.add('warn');
+    return;
+  }
+  try{
+    const n = (await dbGetAll()).length;
+    el.textContent = 'Banco local ampliado: OK • ' + n + ' salvo(s)';
+    el.classList.remove('warn');
+  }catch(e){
+    el.textContent = 'Banco local: erro';
+    el.classList.add('warn');
+  }
+}
+async function atualizarStatusContrato(){
+  const el = document.getElementById('currentContractStatus');
+  if(!el) return;
+  const id = getCurrentId();
+  let item = id ? await dbGet(id).catch(()=>null) : null;
+  el.textContent = item ? ('Contrato atual: ' + item.nome) : 'Contrato atual: não salvo';
+  updateStorageStatus();
+}
+async function novoContrato(){
+  if(!indexedDbSupported()){
+    alert('Este navegador não permite o banco local ampliado. Use Chrome/Edge fora do modo anônimo.');
+    return;
+  }
+  const nome = prompt('Nome do convênio / contrato:', 'MARINHA DO BRASIL / DGN');
+  if(!nome || !nome.trim()) return;
+  const clean = nome.trim();
+
+  if(!confirm('Criar novo contrato para "' + clean + '"?\\n\\nO documento atual será usado como modelo.')) return;
+
+  setConvenioName(clean);
+
+  const item = {
+    id: uid(),
+    nome: clean,
+    criadoEm: nowBR(),
+    atualizadoEm: nowBR(),
+    atualizadoEmISO: new Date().toISOString(),
+    docHtml: getCurrentDocHtml()
+  };
+
+  try{
+    await dbPut(item);
+    setCurrentId(item.id);
+    alert('Contrato criado e salvo para: ' + clean);
+    await renderContratosSalvos();
+  }catch(e){
+    alert('Não foi possível salvar no banco ampliado. Erro: ' + (e.message || e));
+  }
+}
+async function salvarContratoAtual(){
+  if(!indexedDbSupported()){
+    alert('Este navegador não permite o banco local ampliado. Use Chrome/Edge fora do modo anônimo.');
+    return;
+  }
+
+  let id = getCurrentId();
+  let item = id ? await dbGet(id).catch(()=>null) : null;
+
+  if(!item){
+    const nome = prompt('Salvar como novo contrato. Informe o nome do convênio:', 'MARINHA DO BRASIL / DGN');
+    if(!nome || !nome.trim()) return;
+    item = { id: uid(), nome: nome.trim(), criadoEm: nowBR() };
+  }
+
+  const docHtml = typeof getCurrentDocHtml==='function' ? getCurrentDocHtml() : v15GetDocHtml();
+  // Auto-versão silenciosa (máx 20)
+  item.versoes = item.versoes || [];
+  item.versoes.unshift({id:uid(),rotulo:'auto — '+nowBR(),criadoEm:nowBR(),criadoEmISO:new Date().toISOString(),docHtml});
+  if(item.versoes.length > 20) item.versoes = item.versoes.slice(0,20);
+  item.atualizadoEm = nowBR();
+  item.atualizadoEmISO = new Date().toISOString();
+  item.docHtml = docHtml;
+  item.status = item.status || 'Rascunho';
+
+  try{
+    await dbPut(item);
+    setCurrentId(item.id);
+    showToast('✓ Contrato salvo: ' + item.nome);
+    await renderContratosSalvos();
+  }catch(e){
+    alert('Não foi possível salvar. Erro: ' + (e.message || e));
+  }
+}
+async function abrirContratosSalvos(){
+  const modal = document.getElementById('contractsModal');
+  if(modal) {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+  }
+  await renderContratosSalvos();
+}
+function fecharContratosSalvos(){
+  const modal = document.getElementById('contractsModal');
+  if(modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+  }
+}
+async function renderContratosSalvos(){
+  const box = document.getElementById('contractsList');
+  if(!box) return;
+  const q = (document.getElementById('contractSearch')?.value || '').toLowerCase().trim();
+  let list = [];
+  try{
+    list = (await dbGetAll()).filter(c => !q || c.nome.toLowerCase().includes(q));
+  }catch(e){
+    box.innerHTML = '<div class="empty-contracts">Erro ao ler o banco local. Use Chrome/Edge fora do modo anônimo.</div>';
+    return;
+  }
+  await updateStorageStatus();
+
+  if(!list.length){
+    box.innerHTML = '<div class="empty-contracts">Nenhum contrato salvo encontrado.<br><br>Clique em <b>+ Novo contrato</b>, informe o convênio e depois clique em <b>Salvar contrato</b>.</div>';
+    return;
+  }
+
+  box.innerHTML = list.map(c => `
+    <div class="contract-card">
+      <div>
+        <div class="contract-card-title">${escapeHtml(c.nome)}</div>
+        <div class="contract-card-meta">Criado em ${escapeHtml(c.criadoEm || '-')} • Atualizado em ${escapeHtml(c.atualizadoEm || '-')}</div>
+      </div>
+      <div class="contract-card-actions">
+        <button type="button" onclick="reabrirContrato('${c.id}')">Reabrir / editar</button>
+        <button type="button" onclick="duplicarContratoSalvo('${c.id}')">Duplicar</button>
+        <button type="button" onclick="baixarContratoSalvo('${c.id}')">Baixar HTML</button>
+        <button type="button" class="danger" onclick="excluirContratoSalvo('${c.id}')">Excluir</button>
+      </div>
+    </div>
+  `).join('');
+}
+async function reabrirContrato(id){
+  const item = await dbGet(id);
+  if(!item) return alert('Contrato não encontrado.');
+  if(!confirm('Reabrir "' + item.nome + '"?\\n\\nAlterações não salvas no documento atual serão perdidas.')) return;
+  applyDocHtml(item.docHtml);
+  setCurrentId(id);
+  fecharContratosSalvos();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+async function duplicarContratoSalvo(id){
+  const item = await dbGet(id);
+  if(!item) return;
+  const nome = prompt('Nome da cópia:', item.nome + ' - CÓPIA');
+  if(!nome || !nome.trim()) return;
+  const copy = {
+    id: uid(),
+    nome: nome.trim(),
+    criadoEm: nowBR(),
+    atualizadoEm: nowBR(),
+    atualizadoEmISO: new Date().toISOString(),
+    docHtml: item.docHtml
+  };
+  await dbPut(copy);
+  await renderContratosSalvos();
+}
+async function baixarContratoSalvo(id){
+  const item = await dbGet(id);
+  if(!item) return;
+
+  const full = document.documentElement.cloneNode(true);
+  const fullDoc = full.querySelector('.doc');
+  if(fullDoc) fullDoc.innerHTML = item.docHtml;
+  full.querySelectorAll('.contract-modal').forEach(el => el.remove());
+  full.querySelectorAll('tr.selected-row').forEach(el => el.classList.remove('selected-row'));
+
+  baixarArquivo(slug(item.nome) + '.html', '<!doctype html>\\n' + full.outerHTML, 'text/html;charset=utf-8');
+}
+async function excluirContratoSalvo(id){
+  const item = await dbGet(id);
+  if(!item) return;
+  if(!confirm('Excluir definitivamente o contrato salvo "' + item.nome + '"?')) return;
+  await dbDelete(id);
+  if(getCurrentId() === id) setCurrentId('');
+  await renderContratosSalvos();
+}
+async function exportarBackupContratos(){
+  const data = {
+    sistema: 'Ferramenta Padrão de Contratos - Hospital Santa Helena',
+    versao: 'v12-indexeddb',
+    exportadoEm: nowBR(),
+    contratos: await dbGetAll()
+  };
+  baixarArquivo('backup_contratos_hospital_santa_helena.json', JSON.stringify(data, null, 2), 'application/json;charset=utf-8');
+}
+async function importarBackupContratos(ev){
+  const file = ev.target.files && ev.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async () => {
+    try{
+      const data = JSON.parse(reader.result);
+      const incoming = Array.isArray(data) ? data : (data.contratos || []);
+      if(!Array.isArray(incoming)) throw new Error('Formato inválido.');
+      const normalized = incoming.map(normalizeContrato).filter(c => c && c.id && c.nome && c.docHtml);
+      await dbBulkPut(normalized);
+      await renderContratosSalvos();
+      alert('Backup importado.');
+    }catch(e){
+      alert('Não foi possível importar o arquivo JSON.');
+    }
+    ev.target.value = '';
+  };
+  reader.readAsText(file, 'utf-8');
+}
+
+/* Editor de tabelas */
+function markSelectedRow(row){
+  if(!row || row.parentElement.tagName !== 'TBODY') return;
+  document.querySelectorAll('tr.selected-row').forEach(r => r.classList.remove('selected-row'));
+  row.classList.add('selected-row');
+  selectedTableRow = row;
+}
+document.addEventListener('mousedown', function(ev){
+  const cell = ev.target.closest('td');
+  if(!cell) return;
+  const row = cell.closest('tr');
+  const table = cell.closest('table');
+  if(row && table && row.parentElement.tagName === 'TBODY') markSelectedRow(row);
+}, true);
+document.addEventListener('focusin', function(ev){
+  const cell = ev.target.closest && ev.target.closest('td');
+  if(!cell) return;
+  const row = cell.closest('tr');
+  const table = cell.closest('table');
+  if(row && table && row.parentElement.tagName === 'TBODY') markSelectedRow(row);
+}, true);
+function closestTableFromButton(btn){
+  const actions = btn.closest('.table-actions');
+  if(!actions) return null;
+  let el = actions.nextElementSibling;
+  while(el && el.tagName !== 'TABLE') el = el.nextElementSibling;
+  return el;
+}
+function getSelectedRowForTable(table){
+  if(selectedTableRow && selectedTableRow.isConnected && selectedTableRow.closest('table') === table && selectedTableRow.parentElement.tagName === 'TBODY') return selectedTableRow;
+  const row = table.querySelector('tbody tr.selected-row');
+  if(row) return row;
+  const active = document.activeElement;
+  if(active){
+    const activeRow = active.closest && active.closest('tbody tr');
+    if(activeRow && activeRow.closest('table') === table) return activeRow;
+  }
+  return null;
+}
+function todoSpan(campo, ph){
+  return '<span class="todo" contenteditable="true" data-campo="' + campo + '" data-placeholder="' + ph + '" spellcheck="false"></span>';
+}
+function fillNewRow(row){
+  row.classList.remove('selected-row');
+  row.querySelectorAll('td').forEach((td, idx) => {
+    td.contentEditable = 'true';
+    if(td.classList.contains('desc')) td.innerHTML = 'NOVA DESCRIÇÃO DO PACOTE';
+    else if(td.classList.contains('tuss')) td.innerHTML = '<div>CÓDIGO TUSS / PROCEDIMENTO</div>';
+    else if(td.classList.contains('value')) td.innerHTML = 'R$ ' + todoSpan('Valor do pacote', '[informar valor]');
+    else if(idx === row.cells.length - 1) td.innerHTML = todoSpan('Valor', '[informar valor]');
+    else td.innerHTML = todoSpan('Campo', '[preencher]');
+  });
+}
+function addRow(btn){
+  const table = closestTableFromButton(btn);
+  if(!table) return false;
+  const tbody = table.tBodies[0] || table.createTBody();
+  const selected = getSelectedRowForTable(table);
+  const base = selected || tbody.rows[tbody.rows.length - 1];
+  let newRow;
+  if(base){
+    newRow = base.cloneNode(true);
+    fillNewRow(newRow);
+  }else{
+    newRow = document.createElement('tr');
+    const colCount = table.tHead && table.tHead.rows[0] ? table.tHead.rows[0].cells.length : 3;
+    for(let i=0;i<colCount;i++){
+      const td = document.createElement('td');
+      td.contentEditable = 'true';
+      if(table.classList.contains('package-table')){
+        if(i===0) td.className='desc';
+        if(i===1) td.className='tuss';
+        if(i===2) td.className='value';
+      }
+      td.innerHTML = (i===colCount-1) ? ('R$ ' + todoSpan('Valor', '[informar valor]')) : todoSpan('Campo', '[preencher]');
+      newRow.appendChild(td);
+    }
+  }
+  if(selected && selected.parentNode === tbody) selected.insertAdjacentElement('afterend', newRow);
+  else tbody.appendChild(newRow);
+  markSelectedRow(newRow);
+  newRow.scrollIntoView({behavior:'smooth', block:'center'});
+  return false;
+}
+function removeSelectedRow(btn){
+  const table = closestTableFromButton(btn);
+  if(!table || !table.tBodies[0]) return false;
+  const tbody = table.tBodies[0];
+  let row = getSelectedRowForTable(table);
+  if(!row){ alert('Clique primeiro em uma célula da linha que deseja remover.'); return false; }
+  if(row.closest('table') !== table){ alert('A linha selecionada pertence a outra tabela. Clique em uma linha desta tabela.'); return false; }
+  if(tbody.rows.length <= 1){ alert('A tabela precisa manter pelo menos uma linha.'); return false; }
+  const descricao = row.cells[0] ? row.cells[0].innerText.trim().slice(0,80) : '';
+  if(confirm('Remover a linha selecionada?\\n\\n' + descricao)){
+    const next = row.nextElementSibling || row.previousElementSibling;
+    row.remove();
+    selectedTableRow = null;
+    document.querySelectorAll('tr.selected-row').forEach(r => r.classList.remove('selected-row'));
+    if(next && next.isConnected) markSelectedRow(next);
+  }
+  return false;
+}
+function removeLastRow(btn){ return removeSelectedRow(btn); }
+function duplicateTableBlock(btn){
+  const actions = btn.closest('.table-actions');
+  const table = closestTableFromButton(btn);
+  if(!actions || !table) return false;
+  const fragment = document.createDocumentFragment();
+  let prev = actions.previousElementSibling;
+  if(prev && prev.classList && prev.classList.contains('muted') && prev.previousElementSibling && prev.previousElementSibling.classList.contains('group-title')){
+    fragment.appendChild(prev.previousElementSibling.cloneNode(true));
+    fragment.appendChild(prev.cloneNode(true));
+  }else if(prev && prev.classList && prev.classList.contains('group-title')){
+    fragment.appendChild(prev.cloneNode(true));
+  }
+  fragment.appendChild(actions.cloneNode(true));
+  const tableClone = table.cloneNode(true);
+  tableClone.querySelectorAll('[contenteditable]').forEach(el => el.contentEditable = 'true');
+  tableClone.querySelectorAll('tr.selected-row').forEach(r => r.classList.remove('selected-row'));
+  fragment.appendChild(tableClone);
+  let next = table.nextElementSibling;
+  if(next && next.classList.contains('small-note')) fragment.appendChild(next.cloneNode(true));
+  table.parentNode.insertBefore(fragment, (next && next.classList.contains('small-note')) ? next.nextSibling : table.nextSibling);
+  return false;
+}
+function removeTableBlock(btn){
+  const actions = btn.closest('.table-actions');
+  const table = closestTableFromButton(btn);
+  if(!actions || !table) return false;
+  if(!confirm('Remover esta tabela e seus controles?')) return false;
+  const next = table.nextElementSibling;
+  if(next && next.classList.contains('small-note')) next.remove();
+  const prev = actions.previousElementSibling;
+  if(prev && prev.classList && prev.classList.contains('muted')){
+    const prev2 = prev.previousElementSibling;
+    prev.remove();
+    if(prev2 && prev2.classList.contains('group-title')) prev2.remove();
+  }else if(prev && prev.classList && prev.classList.contains('group-title')){
+    prev.remove();
+  }
+  table.remove();
+  actions.remove();
+  selectedTableRow = null;
+  return false;
+}
+function addPackageSection(){
+  const doc = document.querySelector('.doc') || document.body;
+  const section = document.createElement('section');
+  section.className = 'page';
+  section.innerHTML = `
+    <h2 class="group-title" contenteditable="true">Nova Tabela de Pacotes</h2>
+    <div class="table-actions" contenteditable="false">
+      <span>Tabela de pacotes</span>
+      <button type="button" onclick="addRow(this); return false;">+ Linha</button>
+      <button type="button" onclick="removeSelectedRow(this); return false;">− Remover linha selecionada</button>
+      <button type="button" onclick="duplicateTableBlock(this); return false;">Duplicar tabela</button>
+      <button type="button" onclick="removeTableBlock(this); return false;">Remover tabela</button>
+    </div>
+    <table class="package-table">
+      <colgroup><col style="width:48%"><col style="width:39%"><col style="width:13%"></colgroup>
+      <thead><tr><th scope="col" contenteditable="true">Descrição do Pacote</th><th scope="col" contenteditable="true">Codificação TUSS / Procedimental</th><th scope="col" contenteditable="true">Valor</th></tr></thead>
+      <tbody><tr><td class="desc" contenteditable="true">NOVA DESCRIÇÃO DO PACOTE</td><td class="tuss" contenteditable="true"><div>CÓDIGO TUSS / PROCEDIMENTO</div></td><td class="value" contenteditable="true">R$ <span class="todo" contenteditable="true" data-campo="Valor do pacote" data-placeholder="[informar valor]" spellcheck="false"></span></td></tr></tbody>
+    </table>
+    <div class="small-note"><ul><li contenteditable="true">Observações técnicas do pacote.</li></ul></div>`;
+  doc.appendChild(section);
+  section.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function addMarketSection(){
+  const doc = document.querySelector('.doc') || document.body;
+  const section = document.createElement('section');
+  section.className = 'page';
+  section.innerHTML = `
+    <h2 class="group-title" contenteditable="true">Nova Tabela Padrão de Mercado</h2>
+    <div class="small-note market-intro" contenteditable="true">Use esta tabela para registrar regras de CBHPM, SIMPRO, BRASÍNDICE, OPME, TUSS/TISS ou tabela própria.</div>
+    <div class="table-actions" contenteditable="false">
+      <span>Tabela padrão de mercado</span>
+      <button type="button" onclick="addRow(this); return false;">+ Linha</button>
+      <button type="button" onclick="removeSelectedRow(this); return false;">− Remover linha selecionada</button>
+      <button type="button" onclick="duplicateTableBlock(this); return false;">Duplicar tabela</button>
+      <button type="button" onclick="removeTableBlock(this); return false;">Remover tabela</button>
+    </div>
+    <table class="market-table">
+      <thead><tr><th scope="col" contenteditable="true">Tabela / Referência</th><th scope="col" contenteditable="true">Aplicação</th><th scope="col" contenteditable="true">Critério Proposto</th><th scope="col" contenteditable="true">Observação</th></tr></thead>
+      <tbody><tr><td contenteditable="true"><b>Nova referência</b></td><td contenteditable="true">Aplicação</td><td contenteditable="true">Critério proposto</td><td contenteditable="true">Observação</td></tr></tbody>
+    </table>
+    <div class="add-area" contenteditable="true"><b>Campo livre:</b> [descrever regras adicionais]</div>`;
+  doc.appendChild(section);
+  section.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function toggleTableControls(){ document.body.classList.toggle('hide-table-controls'); }
+function exportHtml(){
+  const clone = document.documentElement.cloneNode(true);
+  // Remover todos os modais e UI de interface
+  clone.querySelectorAll('.contract-modal, [id$="Modal"], .v16-side-nav').forEach(el => el.remove());
+  clone.querySelectorAll('tr.selected-row').forEach(el => el.classList.remove('selected-row'));
+  clone.querySelectorAll('.todo.flag').forEach(el => el.classList.remove('flag'));
+  const m = clone.querySelector('#moreMenu'); if(m) m.classList.remove('open');
+  const ms = clone.querySelector('.native-search-float'); if(ms) ms.remove();
+  // Nome dinâmico com data
+  const hoje = new Date().toLocaleDateString('pt-BR').replace(/\//g,'-');
+  const nomeTela = document.querySelector('.section-title')?.innerText?.slice(0,40)||'contrato';
+  const nome = 'HSH_Contratos_' + hoje + '.html';
+  baixarArquivo(nome, '<!doctype html>\n' + clone.outerHTML, 'text/html;charset=utf-8');
+}
+function revisarEImprimir(){
+  const pendentes = [...document.querySelectorAll('.todo')].filter(el => !el.textContent.trim());
+  document.querySelectorAll('.todo.flag').forEach(el => el.classList.remove('flag'));
+  if(pendentes.length){
+    pendentes.forEach(el => el.classList.add('flag'));
+    const nomes = pendentes.map((el,i) => (i+1)+'. ' + (el.getAttribute('data-campo') || el.getAttribute('data-placeholder') || 'campo pendente')).slice(0,20);
+    pendentes[0].scrollIntoView({behavior:'smooth', block:'center'});
+    alert('ATENÇÃO: ' + pendentes.length + ' campo(s) ainda não preenchido(s):\n\n' + nomes.join('\n') + '\n\nOs campos foram destacados. A impressão NÃO será bloqueada.');
+    if(!confirm('Deseja imprimir mesmo assim?')) return;
+  }
+  window.print();
+}
+window.addEventListener('DOMContentLoaded', async () => {
+  try{
+    await openDB();
+    const migrated = await migrateLegacyLocalStorage();
+    await atualizarStatusContrato();
+    await renderContratosSalvos();
+    if(migrated) console.log('Contratos migrados do localStorage:', migrated);
+  }catch(e){
+    const el = document.getElementById('storageDebugStatus');
+    if(el){
+      el.textContent = 'Banco local indisponível';
+      el.classList.add('warn');
+    }
+    console.error(e);
+  }
+});
+</script>
+<script>
+(function(){
+  const originalUpdateStorageStatus = window.updateStorageStatus;
+  window.updateStorageStatus = async function(){
+    if(typeof originalUpdateStorageStatus === 'function'){
+      await originalUpdateStorageStatus();
+    }
+    const side = document.getElementById('sidebarStatus');
+    const topStatus = document.getElementById('storageDebugStatus');
+    if(side && topStatus) side.textContent = topStatus.textContent || 'Banco local ampliado ativo.';
+  };
+})();
+</script>
+<script>
+function toggleMoreMenu(){
+  const m = document.getElementById('moreMenu');
+  if(m) m.classList.toggle('open');
+}
+function toggleSidebar(){
+  document.body.classList.toggle('show-sidebar');
+  const m = document.getElementById('moreMenu');
+  if(m) m.classList.remove('open');
+}
+document.addEventListener('click', function(ev){
+  const menu = document.getElementById('moreMenu');
+  if(!menu) return;
+  if(ev.target.closest('.more-btn') || ev.target.closest('#moreMenu')) return;
+  menu.classList.remove('open');
+}, true);
+</script>
+<script>
+const RULES_KEY_V15='hsh_regras_comerciais_padrao_v15';
+function v15Val(id){return document.getElementById(id)?.value||''}
+function v15Set(id,v){let e=document.getElementById(id);if(e)e.value=v||''}
+const v15Esc = escapeHtml; // alias unificado
+function toggleEditPreviewMode(){document.body.classList.toggle('preview-mode');document.body.classList.toggle('edit-mode');let p=document.body.classList.contains('preview-mode');let b=document.getElementById('modeToggleBtn');let s=document.getElementById('modeStatus');if(b)b.textContent=p?'Editar':'Visualizar';if(s)s.textContent=p?'Modo: visualização':'Modo: edição'}
+function novoContrato(){let m=document.getElementById('newContractModal');if(m){m.classList.add('open');m.setAttribute('aria-hidden','false')}}
+function fecharNovoContratoModal(){let m=document.getElementById('newContractModal');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true')}}
+function v15Doc(){return document.querySelector('.doc')}
+function v15GetDocHtml(){let d=v15Doc(); if(!d)return ''; let c=d.cloneNode(true);c.querySelectorAll('tr.selected-row').forEach(e=>e.classList.remove('selected-row'));return c.innerHTML}
+function v15ApplyDocHtml(h){let d=v15Doc();if(d){d.innerHTML=h||'';selectedTableRow=null}}
+function v15SetConvenio(nome){if(typeof setConvenioName==='function')return setConvenioName(nome);let h=document.querySelector('.section-title');if(h)h.textContent='PROPOSTA DE PACOTES HOSPITALARES – '+nome.toUpperCase()}
+function getTemplateHtmlV15(modelo,nome){let html=v15GetDocHtml();let p=new DOMParser().parseFromString('<main class="doc">'+html+'</main>','text/html');let main=p.querySelector('.doc');let h=main.querySelector('.section-title');let map={pacotes:'PROPOSTA DE PACOTES HOSPITALARES – ',prestacao:'CONTRATO DE PRESTAÇÃO DE SERVIÇOS HOSPITALARES – ',aditivo:'ADITIVO DE REAJUSTE CONTRATUAL – ',diarias:'PROPOSTA DE DIÁRIAS E TAXAS HOSPITALARES – ',prontoSocorro:'PROPOSTA DE PRONTO SOCORRO – ',maternoInfantil:'PROPOSTA MATERNO-INFANTIL – ',hemodinamica:'PROPOSTA DE HEMODINÂMICA – '};if(h)h.textContent=(map[modelo]||map.pacotes)+nome.toUpperCase();let keep={diarias:['Diária Global','Tabelas Padrão','Condições comerciais','Minuta Contratual','Assinaturas'],prontoSocorro:['Pronto Socorro','Condições comerciais','Tabelas Padrão','Minuta Contratual','Assinaturas'],maternoInfantil:['Parto','Ginecologia','Condições comerciais','Tabelas Padrão','Minuta Contratual','Assinaturas'],hemodinamica:['Hemodinâmica','Condições comerciais','Tabelas Padrão','Minuta Contratual','Assinaturas']}[modelo];if(keep)main.querySelectorAll('section.page').forEach((s,i)=>{if(i>0&&!keep.some(k=>(s.textContent||'').includes(k)))s.remove()});return main.innerHTML}
+async function criarContratoComModelo(){
+  let nome=v15Val('newContractName').trim();
+  let modelo=v15Val('newContractTemplate')||'pacotes';
+  if(!nome)return alert('Informe o nome do convênio.');
+  // Usa o HTML atual como base do template e ajusta título/seções
+  let templateHtml=getTemplateHtmlV15(modelo,nome);
+  v15ApplyDocHtml(templateHtml);
+  v15SetConvenio(nome);
+  const docHtml=v15GetDocHtml();
+  let item={id:uid(),nome,modelo,status:'Rascunho',criadoEm:nowBR(),atualizadoEm:nowBR(),atualizadoEmISO:new Date().toISOString(),dados:{convenio:nome,status:'Rascunho'},obsInterna:'',versoes:[{id:uid(),rotulo:'v1 — criação',criadoEm:nowBR(),criadoEmISO:new Date().toISOString(),docHtml}],docHtml};
+  await dbPut(item);setCurrentId(item.id);fecharNovoContratoModal();
+  showToast('✓ Contrato criado: '+nome,'success');
+  renderContratosSalvos();
+}
+function v15Field(prefix){return [...document.querySelectorAll('.field')].find(f=>f.innerText.toLowerCase().startsWith(prefix.toLowerCase()))}
+function v15SetField(prefix,val){let f=v15Field(prefix);if(f)f.innerHTML=prefix+' '+v15Esc(val||'')}
+async function abrirDadosContrato(){let item=getCurrentId()?await dbGet(getCurrentId()).catch(()=>null):null;let d=item?.dados||{};v15Set('dataConvenio',d.convenio||item?.nome||'');v15Set('dataCnpj',d.cnpj);v15Set('dataProposta',d.dataProposta);v15Set('dataValidade',d.validade);v15Set('dataContato',d.contato);v15Set('dataResponsavel',d.responsavel);v15Set('dataRegistro',d.registro);v15Set('dataPagamento',d.pagamento);v15Set('dataReajuste',d.reajuste);v15Set('dataTributos',d.tributos);v15Set('dataStatus',item?.status||d.status||'Rascunho');v15Set('dataObsInterna',item?.obsInterna||d.obsInterna);let m=document.getElementById('contractDataModal');if(m){m.classList.add('open');m.setAttribute('aria-hidden','false')}}
+function fecharDadosContrato(){let m=document.getElementById('contractDataModal');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true')}}
+async function aplicarDadosContrato(){let d={convenio:v15Val('dataConvenio').trim(),cnpj:v15Val('dataCnpj'),dataProposta:v15Val('dataProposta'),validade:v15Val('dataValidade'),contato:v15Val('dataContato'),responsavel:v15Val('dataResponsavel'),registro:v15Val('dataRegistro'),pagamento:v15Val('dataPagamento'),reajuste:v15Val('dataReajuste'),tributos:v15Val('dataTributos'),status:v15Val('dataStatus')||'Rascunho',obsInterna:v15Val('dataObsInterna')};if(d.convenio)v15SetConvenio(d.convenio);if(d.dataProposta)v15SetField('Data da proposta:',d.dataProposta);if(d.validade)v15SetField('Validade da proposta:',d.validade);if(d.contato)v15SetField('Contato comercial:',d.contato);if(d.responsavel||d.registro)v15SetField('Responsável técnico:',(d.responsavel+(d.registro?' • '+d.registro:'')));document.querySelectorAll('.todo').forEach(t=>{let c=t.getAttribute('data-campo')||'';if(c.includes('Forma e prazo')&&d.pagamento)t.textContent=d.pagamento;if(c.includes('Índice')&&d.reajuste)t.textContent=d.reajuste;if(c.includes('Tributos')&&d.tributos)t.textContent=d.tributos});let item=getCurrentId()?await dbGet(getCurrentId()).catch(()=>null):null;if(item){item.nome=d.convenio||item.nome;item.status=d.status;item.obsInterna=d.obsInterna;item.dados=d;item.docHtml=v15GetDocHtml();item.atualizadoEm=nowBR();item.atualizadoEmISO=new Date().toISOString();await dbPut(item);atualizarStatusContrato()}fecharDadosContrato()}
+/* salvarContratoAtual definida acima — bloco principal */
+async function renderContratosSalvos(){let box=document.getElementById('contractsList');if(!box)return;let q=(document.getElementById('contractSearch')?.value||'').toLowerCase().trim();let sf=document.getElementById('contractStatusFilter')?.value||'';let list=(await dbGetAll()).filter(c=>(!q||c.nome.toLowerCase().includes(q))&&(!sf||(c.status||'Rascunho')===sf));await updateStorageStatus();if(!list.length){box.innerHTML='<div class="empty-contracts">Nenhum contrato salvo encontrado.</div>';return}box.innerHTML=list.map(c=>{let st=c.status||'Rascunho',cl=st.replace(/\\s+/g,'-');return `<div class="contract-card"><div><div class="contract-card-title">${v15Esc(c.nome)} <span class="status-badge ${cl}">${v15Esc(st)}</span></div><div class="contract-card-meta">Criado em ${v15Esc(c.criadoEm||'-')} • Atualizado em ${v15Esc(c.atualizadoEm||'-')} • ${(c.versoes||[]).length} versão(ões)${c.obsInterna?`<span class="obs">${v15Esc(c.obsInterna)}</span>`:''}</div></div><div class="contract-card-actions"><button onclick="reabrirContrato('${c.id}')">Reabrir / editar</button><button onclick="gerarPdfContratoSalvo('${c.id}')">Gerar PDF</button><button onclick="duplicarContratoSalvo('${c.id}')">Duplicar</button><button onclick="baixarContratoSalvo('${c.id}')">Baixar HTML</button><button onclick="exportarContratoPorId('${c.id}')">Exportar JSON</button><button class="danger" onclick="excluirContratoSalvo('${c.id}')">Excluir</button></div></div>`}).join('')}
+async function gerarPdfContratoSalvo(id){await reabrirContrato(id);setTimeout(()=>revisarEImprimir(),350)}
+async function duplicarContratoSalvo(id){let item=await dbGet(id);if(!item)return;let nome=prompt('Nome da cópia:',item.nome+' - CÓPIA');if(!nome)return;let copy={...item,id:uid(),nome:nome.trim(),status:'Rascunho',criadoEm:nowBR(),atualizadoEm:nowBR(),atualizadoEmISO:new Date().toISOString()};await dbPut(copy);renderContratosSalvos()}
+async function salvarVersaoManual(){let id=getCurrentId();if(!id)return alert('Salve o contrato primeiro.');let item=await dbGet(id);let rot=prompt('Descrição da versão:','ajuste em '+nowBR());if(!rot)return;item.versoes=item.versoes||[];item.versoes.unshift({id:uid(),rotulo:rot,criadoEm:nowBR(),criadoEmISO:new Date().toISOString(),docHtml:v15GetDocHtml()});item.docHtml=v15GetDocHtml();item.atualizadoEm=nowBR();item.atualizadoEmISO=new Date().toISOString();await dbPut(item);showToast('✓ Versão salva');renderHistoricoVersoes()}
+async function abrirHistoricoVersoes(){let m=document.getElementById('versionModal');if(m){m.classList.add('open');m.setAttribute('aria-hidden','false')}renderHistoricoVersoes()}
+function fecharHistoricoVersoes(){let m=document.getElementById('versionModal');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true')}}
+async function renderHistoricoVersoes(){let box=document.getElementById('versionList');if(!box)return;let item=getCurrentId()?await dbGet(getCurrentId()).catch(()=>null):null;if(!item){box.innerHTML='<div class="empty-contracts">Salve ou reabra um contrato para visualizar versões.</div>';return}let vs=item.versoes||[];if(!vs.length){box.innerHTML='<div class="empty-contracts">Nenhuma versão salva ainda.</div>';return}box.innerHTML=vs.map(v=>`<div class="contract-card"><div><div class="contract-card-title">${v15Esc(v.rotulo)} <span class="version-badge">${v15Esc(v.criadoEm)}</span></div></div><div class="contract-card-actions"><button onclick="restaurarVersao('${v.id}')">Restaurar</button><button onclick="baixarVersao('${v.id}')">Baixar HTML</button><button class="danger" onclick="excluirVersao('${v.id}')">Excluir</button></div></div>`).join('')}
+async function restaurarVersao(vid){let item=await dbGet(getCurrentId());let v=item?.versoes?.find(x=>x.id===vid);if(!v)return;if(!confirm('Restaurar esta versão?'))return;v15ApplyDocHtml(v.docHtml);item.docHtml=v.docHtml;item.atualizadoEm=nowBR();item.atualizadoEmISO=new Date().toISOString();await dbPut(item);alert('Versão restaurada.')}
+async function baixarVersao(vid){let item=await dbGet(getCurrentId());let v=item?.versoes?.find(x=>x.id===vid);if(!v)return;let full=document.documentElement.cloneNode(true);let d=full.querySelector('.doc');if(d)d.innerHTML=v.docHtml;full.querySelectorAll('.contract-modal').forEach(e=>e.remove());baixarArquivo(slug(item.nome+'_'+v.rotulo)+'.html','<!doctype html>\\n'+full.outerHTML,'text/html;charset=utf-8')}
+async function excluirVersao(vid){let item=await dbGet(getCurrentId());if(!item)return;if(!confirm('Excluir esta versão?'))return;item.versoes=(item.versoes||[]).filter(v=>v.id!==vid);await dbPut(item);renderHistoricoVersoes()}
+function validarContrato(show=false){let issues=[];let h=document.querySelector('.section-title')?.innerText.trim()||'';if(!h||h.includes('[preencher]'))issues.push(['Título','Título incompleto.']);let dest=[...document.querySelectorAll('.field')].find(f=>f.innerText.toLowerCase().includes('destinatário:'));if(!dest||dest.innerText.toLowerCase().includes('[preencher]'))issues.push(['Convênio','Destinatário/convênio não preenchido.']);document.querySelectorAll('.todo').forEach(t=>{if(!t.textContent.trim())issues.push(['Campo pendente',t.getAttribute('data-campo')||t.getAttribute('data-placeholder')||'Campo vazio'])});document.querySelectorAll('td.value,.info-table td:last-child').forEach(td=>{let tx=td.innerText.trim();if(!tx||tx.includes('[preencher]')||tx==='R$')issues.push(['Valor vazio','Existe valor vazio ou pendente em tabela.'])});document.querySelectorAll('tbody tr').forEach((tr,i)=>{if([...tr.cells].every(td=>!td.innerText.trim()))issues.push(['Linha em branco','Existe linha totalmente vazia em tabela.'])});if(show){let m=document.getElementById('validationModal'),box=document.getElementById('validationResults');if(box)box.innerHTML=issues.length?`<div class="validation-summary warn"><b>Pendências encontradas: ${issues.length}</b></div><div class="validation-list">${issues.map(i=>`<div class="validation-item"><b>${v15Esc(i[0])}</b><br>${v15Esc(i[1])}</div>`).join('')}</div>`:'<div class="validation-summary ok"><b>Pronto para PDF.</b><br>Não foram encontradas pendências críticas.</div>';if(m){m.classList.add('open');m.setAttribute('aria-hidden','false')}}return issues}
+function fecharValidacao(){let m=document.getElementById('validationModal');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true')}}
+/* revisarEImprimir definida acima — bloco principal */
+function limparLinhasVazias(){let r=0;document.querySelectorAll('tbody tr').forEach(tr=>{if([...tr.cells].every(td=>!td.innerText.trim())&&tr.parentElement.rows.length>1){tr.remove();r++}});alert(r?r+' linha(s) vazia(s) removida(s).':'Nenhuma linha vazia encontrada.')}
+async function getRulesAsync(){
+  try{const r=await dbGet('__rules__');return r?JSON.parse(r.data||'{}'):{}}catch(e){
+    try{return JSON.parse(localStorage.getItem(RULES_KEY_V15)||'{}')}catch(e2){return{}}
+  }
+}
+function getRules(){
+  // versão síncrona (retorna {} e carrega async) — compatibilidade
+  try{return JSON.parse(localStorage.getItem(RULES_KEY_V15)||'{}')}catch(e){return{}}
+}
+async function abrirRegrasPadrao(){
+  let r={};
+  try{r=await getRulesAsync()}catch(e){r=getRules();}
+  v15Set('ruleCBHPM',r.cbhpm);v15Set('ruleSIMPRO',r.simpro);v15Set('ruleBRASINDICE',r.brasindice);v15Set('ruleOPME',r.opme);v15Set('ruleTUSS',r.tuss);v15Set('ruleMED',r.med);
+  let m=document.getElementById('rulesModal');if(m){m.classList.add('open');m.setAttribute('aria-hidden','false')}
+}
+function fecharRegrasPadrao(){let m=document.getElementById('rulesModal');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true')}}
+async function salvarRegrasPadrao(){
+  const rules={cbhpm:v15Val('ruleCBHPM'),simpro:v15Val('ruleSIMPRO'),brasindice:v15Val('ruleBRASINDICE'),opme:v15Val('ruleOPME'),tuss:v15Val('ruleTUSS'),med:v15Val('ruleMED')};
+  const json=JSON.stringify(rules);
+  // Salva nos dois storages: IndexedDB (primário) + localStorage (fallback)
+  try{await dbPut({id:'__rules__',data:json,atualizadoEm:nowBR()})}catch(e){}
+  try{localStorage.setItem(RULES_KEY_V15,json)}catch(e){}
+  showToast('Regras padrão salvas.');
+}
+function aplicarRegrasPadraoNoContrato(){let r=getRules(),table=document.querySelector('.market-table');if(!table)return alert('Não encontrei tabela padrão de mercado.');let rows=[['CBHPM','Honorários médicos, procedimentos e exames.',r.cbhpm||'CBHPM [preencher]','Regra padrão do hospital.'],['SIMPRO','Materiais e insumos.',r.simpro||'SIMPRO vigente [preencher]','Regra padrão do hospital.'],['BRASÍNDICE','Medicamentos.',r.brasindice||'Brasíndice vigente [preencher]','Regra padrão do hospital.'],['OPME','Órteses, próteses e materiais especiais.',r.opme||'Autorização/cotação [preencher]','Regra padrão do hospital.'],['TUSS / TISS','Padronização de codificação.',r.tuss||'TUSS vigente e padrão TISS.','Regra padrão do hospital.'],['Medicamentos excluídos','Medicamentos de alto custo/excluídos.',r.med||'Tabela própria negociada.','Regra padrão do hospital.']];let tb=table.tBodies[0]||table.createTBody();tb.innerHTML=rows.map(row=>'<tr>'+row.map((c,i)=>`<td contenteditable="true">${i===0?'<b>'+v15Esc(c)+'</b>':v15Esc(c)}</td>`).join('')+'</tr>').join('');showToast('✓ Regras aplicadas')}
+async function exportarContratoAtual(){let item=getCurrentId()?await dbGet(getCurrentId()):null;if(!item){let nome=prompt('Nome para exportar este contrato:','contrato_atual');if(!nome)return;item={id:uid(),nome,criadoEm:nowBR(),atualizadoEm:nowBR(),docHtml:v15GetDocHtml(),status:'Rascunho',versoes:[]}}else item.docHtml=v15GetDocHtml();baixarArquivo(slug(item.nome)+'.json',JSON.stringify({tipo:'contrato_hsh',versao:'v15',contrato:item},null,2),'application/json;charset=utf-8')}
+async function exportarContratoPorId(id){let item=await dbGet(id);if(item)baixarArquivo(slug(item.nome)+'.json',JSON.stringify({tipo:'contrato_hsh',versao:'v15',contrato:item},null,2),'application/json;charset=utf-8')}
+function importarContratoAtual(ev){let file=ev.target.files&&ev.target.files[0];if(!file)return;let rd=new FileReader();rd.onload=async()=>{try{if(file.name.toLowerCase().endsWith('.json')){let data=JSON.parse(rd.result),c=data.contrato||data;c.id=c.id||uid();c.status=c.status||'Rascunho';c.versoes=c.versoes||[];c.atualizadoEm=nowBR();c.atualizadoEmISO=new Date().toISOString();await dbPut(c);v15ApplyDocHtml(c.docHtml);setCurrentId(c.id);alert('Contrato importado: '+c.nome)}else{let p=new DOMParser().parseFromString(rd.result,'text/html'),d=p.querySelector('.doc');if(!d)throw Error();v15ApplyDocHtml(d.innerHTML);setCurrentId('');alert('HTML importado. Clique em Salvar contrato para guardar.')}}catch(e){alert('Não foi possível importar o contrato.')}ev.target.value=''};rd.readAsText(file,'utf-8')}
+function exportHtml(){baixarArquivo('FERRAMENTA_PADRAO_CONTRATOS_HOSPITAL_v18_PESQUISA_NATIVA_CORRIGIDA.html','<!doctype html>\\n'+document.documentElement.outerHTML,'text/html;charset=utf-8')}
+</script>
+<script>
+function toggleSidebarCompact(){document.body.classList.toggle('sidebar-compact');document.body.classList.remove('mobile-sidebar-open')}
+function toggleSidebarMobile(){document.body.classList.toggle('mobile-sidebar-open')}
+(function(){
+function syncV16Status(){
+ const topContract=document.getElementById('currentContractStatus'),topStorage=document.getElementById('storageDebugStatus'),topMode=document.getElementById('modeStatus');
+ const sideContract=document.getElementById('v16CurrentContract'),sideStorage=document.getElementById('v16StorageStatus'),sideMode=document.getElementById('v16ModeStatus');
+ if(sideContract&&topContract)sideContract.textContent=(topContract.textContent||'').replace(/^Contrato atual:\s*/i,'')||'não salvo';
+ if(sideStorage&&topStorage)sideStorage.textContent=topStorage.textContent||'Banco local: verificando...';
+ if(sideMode&&topMode)sideMode.textContent=topMode.textContent||'Modo: edição';
+}
+const oldAtualizar=window.atualizarStatusContrato;
+window.atualizarStatusContrato=async function(){if(typeof oldAtualizar==='function')await oldAtualizar.apply(this,arguments);syncV16Status()};
+const oldUpdate=window.updateStorageStatus;
+window.updateStorageStatus=async function(){if(typeof oldUpdate==='function')await oldUpdate.apply(this,arguments);syncV16Status()};
+const oldToggle=window.toggleEditPreviewMode;
+window.toggleEditPreviewMode=function(){if(typeof oldToggle==='function')oldToggle.apply(this,arguments);const preview=document.body.classList.contains('preview-mode');const b=document.getElementById('v16ModeToggleBtn');const sm=document.getElementById('v16ModeStatus');if(b&&b.querySelector('.txt'))b.querySelector('.txt').textContent=preview?'Editar':'Visualizar';if(sm)sm.textContent=preview?'Modo: visualização':'Modo: edição'};
+window.exportHtml=function(){const blob=new Blob(['<!doctype html>\n'+document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='FERRAMENTA_PADRAO_CONTRATOS_HOSPITAL_v18_PESQUISA_NATIVA_CORRIGIDA.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+setInterval(syncV16Status,1000);window.addEventListener('DOMContentLoaded',syncV16Status);
+})();
+</script>
+<script>
+function abrirPesquisaNativa(){
+  const modal = document.getElementById('nativeSearchModal');
+  if(modal){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+  atualizarDashboardPesquisa();
+  setTimeout(()=>document.getElementById('nativeSearchInput')?.focus(),80);
+}
+function fecharPesquisaNativa(){
+  const modal = document.getElementById('nativeSearchModal');
+  if(modal){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+}
+function normSearchText(t){
+  return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+}
+function moneyValues(text){
+  return [...String(text||'').matchAll(/R\$\s?[\d.]+,\d{2}/g)].map(m=>m[0]);
+}
+function tussCodes(text){
+  return [...String(text||'').matchAll(/\b[1-9]\d{7}\b/g)].map(m=>m[0]);
+}
+function stripHtmlToText(html){
+  const div = document.createElement('div');
+  div.innerHTML = html || '';
+  return div.innerText || div.textContent || '';
+}
+function parseDateBR(text){
+  const m = String(text||'').match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if(!m) return null;
+  const d = new Date(Number(m[3]), Number(m[2])-1, Number(m[1]));
+  return isNaN(d.getTime()) ? null : d;
+}
+function daysSinceDate(date){
+  if(!date) return null;
+  return Math.floor((Date.now() - date.getTime()) / 86400000);
+}
+function isContractOld(c, text){
+  const updated = c.atualizadoEmISO ? new Date(c.atualizadoEmISO) : parseDateBR(c.atualizadoEm);
+  const days = daysSinceDate(updated);
+  if(days !== null && days > 365) return true;
+  const validityMatch = text.match(/Validade da proposta:\s*([^\n]+)/i);
+  const validityText = validityMatch ? validityMatch[1] : '';
+  if(/vencid|expirad/i.test(validityText)) return true;
+  return false;
+}
+function isContractPending(text){
+  return /\[informar|\[preencher|campo pendente|R\$\s?\[|____/i.test(text || '');
+}
+function makeSnippet(text, query){
+  text = String(text||'').replace(/\s+/g,' ').trim();
+  if(!query) return text.slice(0,240);
+  const nText = normSearchText(text), nQ = normSearchText(query);
+  let idx = nText.indexOf(nQ);
+  if(idx < 0) idx = 0;
+  const start = Math.max(0, idx-90);
+  const snip = text.slice(start, start+320);
+  return highlightTerm((start>0?'... ':'') + snip + (start+320<text.length?' ...':''), query);
+}
+function highlightTerm(text, query){
+  if(!query) return v17Esc(text);
+  const safe = v17Esc(text);
+  const q = String(query).trim().replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  if(!q) return safe;
+  return safe.replace(new RegExp(q,'ig'), m=>'<mark class="search-mark">'+m+'</mark>');
+}
+const v17Esc = escapeHtml; // alias unificado
+async function getAllContractsForSearch(){
+  let list = [];
+  try{ list = await dbGetAll(); }catch(e){ list = []; }
+  const currentId = getCurrentId ? getCurrentId() : '';
+  const currentHtml = document.querySelector('.doc')?.innerHTML || '';
+  if(currentHtml){
+    const exists = list.some(c=>c.id===currentId);
+    const currentItem = {
+      id: currentId || '__current__',
+      nome: (document.querySelector('.section-title')?.innerText || 'Contrato atual').replace(/^.*?–\s*/,'') || 'Contrato atual',
+      status: 'Atual na tela',
+      atualizadoEm: 'agora',
+      atualizadoEmISO: new Date().toISOString(),
+      docHtml: currentHtml,
+      isCurrent: true
+    };
+    if(exists) list = list.map(c=>c.id===currentId ? {...c, docHtml:currentHtml, isCurrent:true} : c);
+    else list.unshift(currentItem);
+  }
+  return list;
+}
+async function atualizarDashboardPesquisa(){
+  const list = await getAllContractsForSearch();
+  let old=0,pending=0,tuss=0;
+  list.forEach(c=>{
+    const text = stripHtmlToText(c.docHtml);
+    if(isContractOld(c,text)) old++;
+    if(isContractPending(text)) pending++;
+    tuss += new Set(tussCodes(text)).size;
+  });
+  const set = (id,val)=>{ const el=document.getElementById(id); if(el) el.textContent=val; };
+  set('dashTotalContratos', list.length);
+  set('dashAntigos', old);
+  set('dashPendentes', pending);
+  set('dashTuss', tuss);
+}
+function renderSearchResults(title, results){
+  const box = document.getElementById('nativeSearchResults');
+  if(!box) return;
+  if(!results.length){
+    box.innerHTML = '<div class="empty-contracts">Nenhum resultado encontrado.</div>';
+    return;
+  }
+  box.innerHTML = '<div class="result-group-title">'+v17Esc(title)+'</div>' + results.map(r=>`
+    <div class="search-result-card">
+      <div class="search-result-head">
+        <div>
+          <div class="search-result-title">${r.title}</div>
+          <div class="search-result-meta">${r.meta || ''}</div>
+          <div>${(r.tags||[]).map(t=>`<span class="search-tag ${t.type||''}">${v17Esc(t.text)}</span>`).join('')}</div>
+        </div>
+        ${r.value ? `<div class="search-result-value">${v17Esc(r.value)}</div>` : ''}
+      </div>
+      ${r.snippet ? `<div class="search-snippet">${r.snippet}</div>` : ''}
+      <div class="search-actions">
+        ${r.contractId && !r.isCurrent ? `<button onclick="reabrirContrato('${r.contractId}')">Reabrir contrato</button>` : ''}
+        ${r.contractId ? `<button onclick="exportarContratoPorId && exportarContratoPorId('${r.contractId}')">Exportar JSON</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+async function executarPesquisaNativa(force){
+  const input = document.getElementById('nativeSearchInput');
+  const query = (input?.value || '').trim();
+  await atualizarDashboardPesquisa();
+  if(!query && !force) return;
+  if(!query){
+    document.getElementById('nativeSearchResults').innerHTML = '<div class="empty-contracts">Digite um termo para pesquisar.</div>';
+    return;
+  }
+  const list = await getAllContractsForSearch();
+  const nq = normSearchText(query);
+  const results = [];
+  list.forEach(c=>{
+    const text = stripHtmlToText(c.docHtml);
+    const nt = normSearchText(text);
+    if(!nt.includes(nq)) return;
+    const values = moneyValues(text);
+    const codes = tussCodes(text);
+    const qIsCode = /^\d{6,}$/.test(query.replace(/\D/g,''));
+    let value = '';
+    if(qIsCode){
+      const idx = text.indexOf(query);
+      const near = idx>=0 ? text.slice(idx, idx+600) : text;
+      value = moneyValues(near)[0] || values[0] || '';
+    } else {
+      const idx = nt.indexOf(nq);
+      const near = idx>=0 ? text.slice(Math.max(0,idx-200), idx+700) : text;
+      value = moneyValues(near)[0] || '';
+    }
+    results.push({
+      contractId:c.id,
+      isCurrent:c.isCurrent,
+      title:v17Esc(c.nome || 'Contrato'),
+      meta:`Status: ${v17Esc(c.status||'-')} • Atualizado: ${v17Esc(c.atualizadoEm||'-')}`,
+      value,
+      snippet:makeSnippet(text, query),
+      tags:[
+        {text:`${new Set(codes).size} TUSS`},
+        ...(isContractOld(c,text)?[{text:'precisa revisar',type:'warn'}]:[]),
+        ...(isContractPending(text)?[{text:'campos pendentes',type:'danger'}]:[])
+      ]
+    });
+  });
+  renderSearchResults('Resultados para: ' + query, results);
+}
+function pesquisaRapida(term){
+  const input = document.getElementById('nativeSearchInput');
+  if(input) input.value = term;
+  executarPesquisaNativa(true);
+}
+async function listarContratosParaAtualizar(){
+  await atualizarDashboardPesquisa();
+  const list = await getAllContractsForSearch();
+  const results = list.map(c=>{
+    const text = stripHtmlToText(c.docHtml);
+    const reasons = [];
+    if(isContractOld(c,text)) reasons.push({text:'antigo/vencido',type:'warn'});
+    if(isContractPending(text)) reasons.push({text:'campos pendentes',type:'danger'});
+    if(/Rascunho|Em negociação/i.test(c.status||'')) reasons.push({text:c.status,type:'warn'});
+    return {c,text,reasons};
+  }).filter(x=>x.reasons.length).map(x=>({
+    contractId:x.c.id,isCurrent:x.c.isCurrent,title:v17Esc(x.c.nome),meta:`Status: ${v17Esc(x.c.status||'-')} • Atualizado: ${v17Esc(x.c.atualizadoEm||'-')}`,
+    snippet:makeSnippet(x.text,''),
+    tags:x.reasons
+  }));
+  renderSearchResults('Contratos que precisam revisar/atualizar', results);
+}
+async function listarContratosAntigos(){
+  await atualizarDashboardPesquisa();
+  const list = await getAllContractsForSearch();
+  const results = list.map(c=>{
+    const text = stripHtmlToText(c.docHtml);
+    const d = c.atualizadoEmISO ? new Date(c.atualizadoEmISO) : parseDateBR(c.atualizadoEm);
+    const days = daysSinceDate(d);
+    return {c,text,days};
+  }).sort((a,b)=>(b.days||0)-(a.days||0)).map(x=>({
+    contractId:x.c.id,isCurrent:x.c.isCurrent,title:v17Esc(x.c.nome),
+    meta:`Atualizado: ${v17Esc(x.c.atualizadoEm||'-')} ${x.days!==null?'• '+x.days+' dias':''}`,
+    snippet:makeSnippet(x.text,''),
+    tags:[...(x.days>365?[{text:'mais de 1 ano',type:'warn'}]:[]),...(isContractPending(x.text)?[{text:'campos pendentes',type:'danger'}]:[])]
+  }));
+  renderSearchResults('Contratos mais antigos', results);
+}
+function buscarTussSelecionado(){
+  const sel = String(window.getSelection ? window.getSelection() : '').trim();
+  const code = (sel.match(/\b[1-9]\d{7}\b/)||[])[0];
+  if(!code){
+    alert('Selecione um código TUSS no documento ou digite o código na pesquisa.');
+    return;
+  }
+  const input = document.getElementById('nativeSearchInput');
+  if(input) input.value = code;
+  executarPesquisaNativa(true);
+}
+</script>
+
+<button class="native-search-float" id="nativeSearchFloatBtn" onclick="abrirPesquisaNativa()" title="Pesquisa nativa">⌕</button>
+
+<script>
+function abrirPesquisaNativa(){
+  const modal = document.getElementById('nativeSearchModal');
+  if(modal){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+  if(typeof atualizarDashboardPesquisa === 'function') atualizarDashboardPesquisa();
+  setTimeout(()=>document.getElementById('nativeSearchInput')?.focus(),80);
+}
+function fecharPesquisaNativa(){
+  const modal = document.getElementById('nativeSearchModal');
+  if(modal){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+}
+function normSearchText(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
+function moneyValues(text){return [...String(text||'').matchAll(/R\$\s?[\d.]+,\d{2}/g)].map(m=>m[0])}
+function tussCodes(text){return [...String(text||'').matchAll(/\b[1-9]\d{7}\b/g)].map(m=>m[0])}
+function stripHtmlToText(html){const div=document.createElement('div');div.innerHTML=html||'';return div.innerText||div.textContent||''}
+function parseDateBR(text){const m=String(text||'').match(/(\d{2})\/(\d{2})\/(\d{4})/);if(!m)return null;const d=new Date(Number(m[3]),Number(m[2])-1,Number(m[1]));return isNaN(d.getTime())?null:d}
+function daysSinceDate(date){if(!date)return null;return Math.floor((Date.now()-date.getTime())/86400000)}
+function isContractOld(c,text){const updated=c.atualizadoEmISO?new Date(c.atualizadoEmISO):parseDateBR(c.atualizadoEm);const days=daysSinceDate(updated);if(days!==null&&days>365)return true;if(/vencid|expirad/i.test(text||''))return true;return false}
+function isContractPending(text){return /\[informar|\[preencher|campo pendente|R\$\s?\[|____/i.test(text||'')}
+const v18Esc = escapeHtml; // alias unificado
+function highlightTerm(text,query){const safe=v18Esc(text);if(!query)return safe;const q=String(query).trim().replace(/[.*+?^${}()|[\]\\]/g,'\\$&');if(!q)return safe;return safe.replace(new RegExp(q,'ig'),m=>'<mark class="search-mark">'+m+'</mark>')}
+function makeSnippet(text,query){text=String(text||'').replace(/\s+/g,' ').trim();if(!query)return v18Esc(text.slice(0,260));const nt=normSearchText(text),nq=normSearchText(query);let idx=nt.indexOf(nq);if(idx<0)idx=0;const start=Math.max(0,idx-90);const snip=text.slice(start,start+340);return highlightTerm((start>0?'... ':'')+snip+(start+340<text.length?' ...':''),query)}
+/* getAllContractsForSearch definida acima — bloco principal */
+/* atualizarDashboardPesquisa definida acima — bloco principal */
+function renderSearchResults(title,results){
+  const box=document.getElementById('nativeSearchResults');if(!box)return;
+  if(!results.length){box.innerHTML='<div class="empty-contracts">Nenhum resultado encontrado.</div>';return}
+  box.innerHTML='<div class="result-group-title">'+v18Esc(title)+'</div>'+results.map(r=>`
+    <div class="search-result-card"><div class="search-result-head"><div><div class="search-result-title">${r.title}</div><div class="search-result-meta">${r.meta||''}</div><div>${(r.tags||[]).map(t=>`<span class="search-tag ${t.type||''}">${v18Esc(t.text)}</span>`).join('')}</div></div>${r.value?`<div class="search-result-value">${v18Esc(r.value)}</div>`:''}</div>${r.snippet?`<div class="search-snippet">${r.snippet}</div>`:''}<div class="search-actions">${r.contractId&&!r.isCurrent?`<button onclick="reabrirContrato('${r.contractId}')">Reabrir contrato</button>`:''}${r.contractId&&typeof exportarContratoPorId==='function'?`<button onclick="exportarContratoPorId('${r.contractId}')">Exportar JSON</button>`:''}</div></div>`).join('');
+}
+/* executarPesquisaNativa definida acima — bloco principal */
+function pesquisaRapida(term){const input=document.getElementById('nativeSearchInput');if(input)input.value=term;executarPesquisaNativa(true)}
+async function listarContratosParaAtualizar(){
+  await atualizarDashboardPesquisa();const list=await getAllContractsForSearch();const results=list.map(c=>{const text=stripHtmlToText(c.docHtml);const reasons=[];if(isContractOld(c,text))reasons.push({text:'antigo/vencido',type:'warn'});if(isContractPending(text))reasons.push({text:'campos pendentes',type:'danger'});if(/Rascunho|Em negociação/i.test(c.status||''))reasons.push({text:c.status,type:'warn'});return{c,text,reasons}}).filter(x=>x.reasons.length).map(x=>({contractId:x.c.id,isCurrent:x.c.isCurrent,title:v18Esc(x.c.nome),meta:`Status: ${v18Esc(x.c.status||'-')} • Atualizado: ${v18Esc(x.c.atualizadoEm||'-')}`,snippet:makeSnippet(x.text,''),tags:x.reasons}));
+  renderSearchResults('Contratos que precisam revisar/atualizar',results);
+}
+async function listarContratosAntigos(){
+  await atualizarDashboardPesquisa();const list=await getAllContractsForSearch();const results=list.map(c=>{const text=stripHtmlToText(c.docHtml);const d=c.atualizadoEmISO?new Date(c.atualizadoEmISO):parseDateBR(c.atualizadoEm);const days=daysSinceDate(d);return{c,text,days}}).sort((a,b)=>(b.days||0)-(a.days||0)).map(x=>({contractId:x.c.id,isCurrent:x.c.isCurrent,title:v18Esc(x.c.nome),meta:`Atualizado: ${v18Esc(x.c.atualizadoEm||'-')} ${x.days!==null?'• '+x.days+' dias':''}`,snippet:makeSnippet(x.text,''),tags:[...(x.days>365?[{text:'mais de 1 ano',type:'warn'}]:[]),...(isContractPending(x.text)?[{text:'campos pendentes',type:'danger'}]:[])]}));
+  renderSearchResults('Contratos mais antigos',results);
+}
+function buscarTussSelecionado(){
+  const sel=String(window.getSelection?window.getSelection():'').trim();const code=(sel.match(/\b[1-9]\d{7}\b/)||[])[0];
+  if(!code){alert('Selecione um código TUSS no documento ou digite o código na pesquisa.');return}
+  const input=document.getElementById('nativeSearchInput');if(input)input.value=code;executarPesquisaNativa(true);
+}
+window.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(document.getElementById('nativeSearchBtn')) console.log('Pesquisa nativa carregada');},300)});
+
+/* ── Toast ── */
+function showToast(msg, type=''){
+  let t=document.getElementById('hsh-toast');
+  if(!t){t=document.createElement('div');t.id='hsh-toast';document.body.appendChild(t);}
+  t.textContent=msg;
+  t.className='show '+(type||'');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>{t.className='';},3000);
+}
+
+/* ── Auto-save a cada 90 segundos ── */
+(function(){
+  let _autoSaveTimer=null;
+  function scheduleAutoSave(){
+    clearTimeout(_autoSaveTimer);
+    _autoSaveTimer=setTimeout(async()=>{
+      const id=typeof getCurrentId==='function'?getCurrentId():'';
+      if(!id) return; // não salva se contrato não tem ID (nunca salvo manualmente)
+      try{
+        if(typeof dbGet==='function' && typeof dbPut==='function'){
+          const item=await dbGet(id).catch(()=>null);
+          if(!item) return;
+          const docHtml=typeof getCurrentDocHtml==='function'?getCurrentDocHtml():
+                        (document.querySelector('.doc')?.innerHTML||'');
+          item.docHtml=docHtml;
+          item.atualizadoEm=typeof nowBR==='function'?nowBR():'';
+          item.atualizadoEmISO=new Date().toISOString();
+          await dbPut(item);
+          showToast('Rascunho salvo automaticamente','success');
+        }
+      }catch(e){ /* silencioso */ }
+      scheduleAutoSave();
+    }, 90000);
+  }
+  window.addEventListener('DOMContentLoaded', scheduleAutoSave);
+  document.addEventListener('input', ()=>{
+    clearTimeout(_autoSaveTimer);
+    _autoSaveTimer=setTimeout(scheduleAutoSave, 500);
+    scheduleAutoSave();
+  }, {passive:true});
+})();
+
+</script>
+</body></html>
