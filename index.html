@@ -2986,4 +2986,106 @@ function showToast(msg, type=''){
 })();
 
 </script>
+
+
+<script>
+/* ===== FIX GitHub Pages / armazenamento local robusto =====
+   GitHub Pages é hospedagem estática: os contratos ficam salvos no navegador do usuário.
+   Este bloco mantém IndexedDB como principal e tenta fallback local quando o navegador bloqueia IndexedDB. */
+(function(){
+  const FB_KEY = 'hsh_contratos_fallback_v18';
+  const CURRENT_SAFE_KEY = typeof CURRENT_KEY !== 'undefined' ? CURRENT_KEY : 'hsh_contrato_atual_id_v12';
+  const original = {
+    dbGetAll: window.dbGetAll,
+    dbGet: window.dbGet,
+    dbPut: window.dbPut,
+    dbDelete: window.dbDelete,
+    dbBulkPut: window.dbBulkPut,
+    updateStorageStatus: window.updateStorageStatus
+  };
+
+  function fallbackLoad(){
+    try{
+      const raw = localStorage.getItem(FB_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    }catch(e){ return []; }
+  }
+  function fallbackSave(list){
+    try{
+      localStorage.setItem(FB_KEY, JSON.stringify(list || []));
+      return true;
+    }catch(e){
+      throw new Error('Armazenamento local indisponível ou cheio. Exporte backup JSON e limpe contratos antigos. ' + (e.message || e));
+    }
+  }
+  function sortContracts(list){
+    return (list || []).sort((a,b)=>String(b.atualizadoEmISO||b.atualizadoEm||'').localeCompare(String(a.atualizadoEmISO||a.atualizadoEm||'')));
+  }
+  async function primary(fn, args){
+    if(!window.indexedDB || typeof original[fn] !== 'function') throw new Error('IndexedDB indisponível.');
+    return await original[fn].apply(window, args || []);
+  }
+
+  window.getCurrentId = function(){
+    try{ return localStorage.getItem(CURRENT_SAFE_KEY) || ''; }catch(e){ return ''; }
+  };
+  window.setCurrentId = function(id){
+    try{ if(id) localStorage.setItem(CURRENT_SAFE_KEY, id); else localStorage.removeItem(CURRENT_SAFE_KEY); }catch(e){}
+    if(typeof atualizarStatusContrato === 'function') atualizarStatusContrato();
+  };
+
+  window.dbGetAll = async function(){
+    try{ return await primary('dbGetAll'); }
+    catch(e){ return sortContracts(fallbackLoad()); }
+  };
+  window.dbGet = async function(id){
+    try{ return await primary('dbGet', [id]); }
+    catch(e){ return fallbackLoad().find(c=>c.id===id) || null; }
+  };
+  window.dbPut = async function(item){
+    try{ return await primary('dbPut', [item]); }
+    catch(e){
+      const list = fallbackLoad();
+      const idx = list.findIndex(c=>c.id===item.id);
+      if(idx >= 0) list[idx] = item; else list.push(item);
+      fallbackSave(list);
+      return true;
+    }
+  };
+  window.dbDelete = async function(id){
+    try{ return await primary('dbDelete', [id]); }
+    catch(e){ fallbackSave(fallbackLoad().filter(c=>c.id!==id)); return true; }
+  };
+  window.dbBulkPut = async function(items){
+    try{ return await primary('dbBulkPut', [items]); }
+    catch(e){
+      const map = new Map(fallbackLoad().map(c=>[c.id,c]));
+      (items || []).forEach(c=>{ if(c && c.id) map.set(c.id,c); });
+      fallbackSave([...map.values()]);
+      return true;
+    }
+  };
+  window.updateStorageStatus = async function(){
+    const el = document.getElementById('storageDebugStatus');
+    if(!el) return;
+    try{
+      const n = (await window.dbGetAll()).length;
+      el.textContent = 'Banco local: OK • ' + n + ' salvo(s) neste navegador';
+      el.classList.remove('warn');
+    }catch(e){
+      el.textContent = 'Banco local: erro / armazenamento bloqueado';
+      el.classList.add('warn');
+    }
+  };
+
+  window.addEventListener('DOMContentLoaded', ()=>{
+    setTimeout(()=>{
+      if(typeof updateStorageStatus === 'function') updateStorageStatus();
+      if(typeof atualizarStatusContrato === 'function') atualizarStatusContrato();
+    }, 400);
+  });
+})();
+</script>
+
 </body></html>
